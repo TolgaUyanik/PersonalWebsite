@@ -5,60 +5,480 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Musashi's Water Book: Fluidity and Strategy</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; margin: 20px; }
-        article { max-width: 800px; margin: auto; }
-        h1, h2, h3 { color: #333; }
-        strong { color: #000; }
-        .citation { font-size: 0.9em; color: #555; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            color: #1a365d;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="water" patternUnits="userSpaceOnUse" width="20" height="20"><path d="M0,10 Q5,5 10,10 T20,10" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" fill="none"/></pattern></defs><rect width="100" height="100" fill="url(%23water)"/></svg>');
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #4a5568;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .intro-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h2 {
+            color: #2d3748;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        h3 {
+            color: #4a5568;
+            font-size: 1.5em;
+            margin: 30px 0 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+            color: #2d3748;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #1a202c;
+            font-weight: 600;
+            background: linear-gradient(120deg, #bee3f8 0%, #90cdf4 100%);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        ul {
+            margin: 20px 0;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 12px;
+            border-left: 4px solid #4299e1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            list-style: none;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        li::before {
+            content: '⚔️';
+            position: absolute;
+            left: -15px;
+            top: 20px;
+            font-size: 1.2em;
+            background: white;
+            padding: 5px;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .technique-title {
+            font-weight: 700;
+            color: #2b6cb0;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .citation {
+            font-size: 0.85em;
+            color: #718096;
+            background: rgba(113, 128, 150, 0.1);
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-left: 5px;
+        }
+
+        .essence-section {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #4fd1c7;
+            position: relative;
+        }
+
+        .essence-section::before {
+            content: '💧';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            font-size: 2em;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .core-principles {
+            background: linear-gradient(135deg, #fef5e7 0%, #fed7aa 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #f6ad55;
+        }
+
+        .mastery-section {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #68d391;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.2em;
+            color: #2d3748;
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #4299e1 0%, #667eea 100%);
+            color: white;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 4em;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.3);
+            font-family: serif;
+        }
+
+        .water-flow {
+            background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+            background-size: 200% 100%;
+            animation: waterFlow 4s ease-in-out infinite;
+            height: 4px;
+            border-radius: 2px;
+            margin: 20px 0;
+        }
+
+        @keyframes waterFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .floating-element {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .section-divider {
+            text-align: center;
+            margin: 50px 0;
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+        }
+
+        .section-divider span {
+            background: white;
+            padding: 0 20px;
+            color: #667eea;
+            font-size: 1.5em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header, main {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2em;
+            }
+            
+            h2 {
+                font-size: 1.8em;
+            }
+            
+            li {
+                padding: 15px;
+            }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
+    <div class="scroll-indicator"></div>
+    
+    <div class="container">
+        <header class="floating-element">
+            <h1>Musashi's Water Book</h1>
+            <p class="subtitle">Fluidity and Strategy in the Art of War</p>
+        </header>
 
-<article>
-    <h1>Musashi's Water Book: Fluidity and Strategy</h1>
+        <div class="intro-section">
+            <p>Miyamoto Musashi, a legendary Japanese samurai and one of history's most skilled swordsmen <span class="citation">[1]</span>, authored "The Book of Five Rings" (Go Rin No Sho) as a treatise on strategy, tactics, and philosophy <span class="citation">[1]</span>. Written in 1645 <span class="citation">[2]</span>, just before his death, the book is divided into five sections: Ground, Water, Fire, Wind, and Void <span class="citation">[3]</span>. Each book represents a different aspect or element of strategy, offering profound insights that extend far beyond martial combat <span class="citation">[3, 4]</span>. The second of these, the Water Book, is particularly significant as it explains the core methods and spirit of Musashi's own Hyōhō Niten Ichi-ryū (or Niten-ryū) style of swordsmanship <span class="citation">[1, 2, 5]</span>.</p>
+        </div>
 
-    <p>Miyamoto Musashi, a legendary Japanese samurai and one of history's most skilled swordsmen [1], authored "The Book of Five Rings" (Go Rin No Sho) as a treatise on strategy, tactics, and philosophy [1]. Written in 1645 [2], just before his death, the book is divided into five sections: Ground, Water, Fire, Wind, and Void [3]. Each book represents a different aspect or element of strategy, offering profound insights that extend far beyond martial combat [3, 4]. The second of these, the Water Book, is particularly significant as it explains the core methods and spirit of Musashi's own Hyōhō Niten Ichi-ryū (or Niten-ryū) style of swordsmanship [1, 2, 5].</p>
+        <main>
+            <div class="essence-section">
+                <h2>The Essence of Water</h2>
+                <div class="water-flow"></div>
+                
+                <p>The spirit of the <strong>Ni Ten Ichi school of strategy is based on water</strong> <span class="citation">[5]</span>. Musashi explains that with water as the basis, <strong>the spirit becomes like water</strong> <span class="citation">[6]</span>. This means adopting the shape of its receptacle, sometimes being a mere trickle and other times a wild sea <span class="citation">[6]</span>. Just as water has a clear blue colour, the clarity of Ichi school's principles is shown in this book <span class="citation">[6]</span>.</p>
 
-    <h2>The Essence of Water</h2>
+                <p>The Water Book describes methods of victory, focusing on the long-sword form of the Ichi school <span class="citation">[5]</span>. While the principles are often written in terms of single combat, Musashi emphasizes that you must <strong>think broadly</strong> so that you attain an understanding for battles involving ten thousand on a side <span class="citation">[7]</span>. The principle is that the spirit of defeating one man is the same for ten million men <span class="citation">[6]</span>. A strategist makes small things into big things, like building a great Buddha from a one-foot model <span class="citation">[6]</span>. The overarching principle is, having one thing, <strong>to know ten thousand things</strong> <span class="citation">[6]</span>.</p>
 
-    <p>The spirit of the **Ni Ten Ichi school of strategy is based on water** [5]. Musashi explains that with water as the basis, **the spirit becomes like water** [6]. This means adopting the shape of its receptacle, sometimes being a mere trickle and other times a wild sea [6]. Just as water has a clear blue colour, the clarity of Ichi school's principles is shown in this book [6].</p>
+                <div class="quote">
+                    Understanding the Way of Strategy through the Water Book requires more than just reading; it must be grasped intuitively.
+                </div>
 
-    <p>The Water Book describes methods of victory, focusing on the long-sword form of the Ichi school [5]. While the principles are often written in terms of single combat, Musashi emphasizes that you must **think broadly** so that you attain an understanding for battles involving ten thousand on a side [7]. The principle is that the spirit of defeating one man is the same for ten million men [6]. A strategist makes small things into big things, like building a great Buddha from a one-foot model [6]. The overarching principle is, having one thing, **to know ten thousand things** [6].</p>
+                <p>Understanding the Way of Strategy through the Water Book requires more than just reading; it must be <strong>grasped intuitively</strong> <span class="citation">[5]</span>. If you merely read the book, you will not reach the Way <span class="citation">[7]</span>. Instead, you must <strong>absorb the things written in this book</strong>, not just reading, memorizing, or imitating, but studying hard to realize the principle from within your own heart and absorb these things into your body <span class="citation">[7]</span>. Mistaking the Way, even a little, can lead to bewilderment and falling into bad ways <span class="citation">[7]</span>.</p>
+            </div>
 
-    <p>Understanding the Way of Strategy through the Water Book requires more than just reading; it must be **grasped intuitively** [5]. If you merely read the book, you will not reach the Way [7]. Instead, you must **absorb the things written in this book**, not just reading, memorizing, or imitating, but studying hard to realize the principle from within your own heart and absorb these things into your body [7]. Mistaking the Way, even a little, can lead to bewilderment and falling into bad ways [7].</p>
+            <div class="section-divider">
+                <span>⚔️</span>
+            </div>
 
-    <h2>Core Principles and Techniques from the Water Book</h2>
+            <div class="core-principles">
+                <h2>Core Principles and Techniques from the Water Book</h2>
+                
+                <p>The Water Book delves into various practical and spiritual aspects crucial for mastering strategy:</p>
 
-    <p>The Water Book delves into various practical and spiritual aspects crucial for mastering strategy:</p>
+                <ul>
+                    <li>
+                        <span class="technique-title">Spiritual Bearing</span>
+                        In strategy and everyday life, your spiritual bearing should be <strong>determined though calm</strong> <span class="citation">[8]</span>. You should meet situations without tenseness yet not recklessly, with a spirit that is settled yet unbiased <span class="citation">[8]</span>. Do not let your spirit be influenced by your body, or your body by your spirit <span class="citation">[8]</span>. Avoid being insufficiently or overly spirited; an elevated or low spirit is weak <span class="citation">[8]</span>. Crucially, <strong>do not let the enemy see your spirit</strong> <span class="citation">[8]</span>. You must cultivate your wisdom and spirit, learning public justice, distinguishing good from evil, and studying different arts <span class="citation">[9]</span>. When you cannot be deceived by men, you will have realized the wisdom of strategy <span class="citation">[9]</span>. This wisdom is different on the battlefield, where you must ceaselessly research principles to develop a steady spirit, even when hard-pressed <span class="citation">[10]</span>.
+                    </li>
 
-    <ul>
-        <li><strong>Spiritual Bearing:</strong> In strategy and everyday life, your spiritual bearing should be **determined though calm** [8]. You should meet situations without tenseness yet not recklessly, with a spirit that is settled yet unbiased [8]. Do not let your spirit be influenced by your body, or your body by your spirit [8]. Avoid being insufficiently or overly spirited; an elevated or low spirit is weak [8]. Crucially, **do not let the enemy see your spirit** [8]. You must cultivate your wisdom and spirit, learning public justice, distinguishing good from evil, and studying different arts [9]. When you cannot be deceived by men, you will have realized the wisdom of strategy [9]. This wisdom is different on the battlefield, where you must ceaselessly research principles to develop a steady spirit, even when hard-pressed [10].</li>
-        <li><strong>Stance:</strong> Adopt a stance with your head erect, looking neither up nor down, nor twisted [10]. Keep features composed, the nose line straight, and nostrils slightly flared [10]. The back of the neck should be straight, instilling vigour throughout the body from shoulders down [10]. Shoulders should be low, the abdomen braced, and strength put into the legs [10]. This combat stance should be maintained in everyday life, and your everyday stance should be your combat stance [11].</li>
-        <li><strong>Gaze:</strong> The gaze should be **large and broad**, described as the "twofold gaze: Perception and Sight" [11]. Perception is strong, while sight is weak [11]. In strategy, it is important to **see distant things as if they were close and take a distanced view of close things** [11]. You must focus on knowing the enemy's sword and not be distracted by insignificant movements [11]. This gaze is the same for single combat and large-scale strategy and should be used in everyday life, not varying whatever happens [11, 12].</li>
-        <li><strong>Holding the Long Sword:</strong> Grip the long sword with a floating feeling in the thumb and forefinger, tight with the last two fingers, and the middle finger neither tight nor slack [12]. There should be no play in your hands [12]. When taking up the sword, **you must feel intent on cutting the enemy** [12]. Do not change your grip when cutting, and your hands must not "cower" [12]. Fixedness is a dead hand; pliability is a living hand [13].</li>
-        <li><strong>Footwork:</strong> Tread firmly with your heels, with toe tips somewhat floating [13]. Feet must always move as in normal walking, whether moving fast or slow [13]. Musashi dislikes methods like "jumping-foot," "floating-foot," and "fixed-steps" [13]. "Yin-Yang foot" is important, meaning not moving only one foot, but moving left-right and right-left when cutting, withdrawing, or warding off [14].</li>
-        <li><strong>The Five Attitudes:</strong> These are Upper, Middle, Lower, Right Side, and Left Side [14]. The sole purpose is to **cut the enemy** [14]. Do not be conscious of making an attitude; think only of cutting [14]. Attitudes should be large or small according to the situation [14]. The Middle attitude is the heart of the attitudes [15].</li>
-        <li><strong>The Way of the Long Sword:</strong> Knowing this means you can wield the sword with two fingers [15]. If you know the path of the sword well, you can wield it easily [15]. You must wield the long sword **calmly**, not quickly [15]. Trying to wield it quickly leads to "short sword chopping," which cannot cut down a man with a long sword [16].</li>
-        <li><strong>The Five Approaches:</strong> These are specific methods tied to the five attitudes for engaging the enemy [17-20]. They involve actions like dashing, deflecting, cutting from different angles (upwards, downwards, sideways), parrying, and transitioning between attitudes [17-20]. Mastering these approaches, along with timing and understanding the enemy's sword, will allow you to **always win** [18, 20].</li>
-        <li><strong>Attitude No-Attitude:</strong> This teaching means there is **no need for fixed long sword attitudes**, though the five ways of holding the sword still exist [21]. How you hold the sword should simply make it easy to cut the enemy, adapting to the situation, place, and your relation to the enemy [21]. The principle is "Existing Attitude - Nonexisting Attitude" [22]. The primary intention is always to **cut the enemy** [22]. Every movement, whether parrying, hitting, springing, striking, or touching, must include the intention of cutting [22].</li>
-        <li><strong>Cutting Techniques:</strong> Various specific cuts are described, such as "In One Timing" (hitting instantly before the enemy decides to move) [23], "Abdomen Timing of Two" (feinting and then cutting as the enemy relaxes) [24], "No Design, No Conception" (hitting with body, spirit, and hands from the Void) [25], "Flowing Water Cut" (cutting slowly, following the body like stagnant water) [25], "Continuous Cut" (cutting multiple places with one sweep) [26], "Fire and Stones Cut" (cutting strongly on impact without raising the sword) [26, 27], and "Red Leaves Cut" (knocking down the enemy's sword) [27].</li>
-        <li><strong>Body Principles:</strong> Concepts like "The Body in Place of the Long Sword" or "the long sword in place of the body" suggest prioritizing body movement or sword movement depending on the enemy [28]. "Chinese Monkey's Body" is about not stretching out your arms, getting in quickly with your whole body [29]. "Glue and Lacquer Emulsion Body" means sticking firmly to the enemy when you approach [30]. "To Strive for Height" is about striving for a superior position when closing with the enemy [30]. "To Apply Stickiness" involves hitting the enemy's sword so that they do not separate easily [31]. The "Body Strike" is striking the enemy's breast with your shoulder through a gap in their guard [31].</li>
-        <li><strong>Parrying and Stabbing:</strong> Three methods to parry a cut are described, often involving thrusting at the enemy's eyes or face [32, 33]. "To Stab at the Face" means being intent on stabbing at the enemy's face with the sword point, making their body "rideable" [33]. "To Stab at the Heart" is used when cutting is difficult, thrusting at the enemy's breast without wavering the point [34].</li>
-        <li><strong>"Scold Tut-TUT!" and "Smacking Parry":</strong> "Scold Tut-TUT!" is a counter-cut with quick timing, thrusting up and cutting simultaneously with raising the sword [35, 36]. The "Smacking Parry" involves meeting the enemy's cut with a specific rhythm, primarily intending to cut them quickly rather than just parry [36, 37].</li>
-        <li><strong>Fighting Many Enemies:</strong> Against multiple opponents, use both swords, adopt a wide-stretched attitude, chase enemies around, observe their attacking order, and cut left and right alternately [37]. Drive them together and cut them down strongly without letting them recover [37].</li>
-    </ul>
+                    <li>
+                        <span class="technique-title">Stance</span>
+                        Adopt a stance with your head erect, looking neither up nor down, nor twisted <span class="citation">[10]</span>. Keep features composed, the nose line straight, and nostrils slightly flared <span class="citation">[10]</span>. The back of the neck should be straight, instilling vigour throughout the body from shoulders down <span class="citation">[10]</span>. Shoulders should be low, the abdomen braced, and strength put into the legs <span class="citation">[10]</span>. This combat stance should be maintained in everyday life, and your everyday stance should be your combat stance <span class="citation">[11]</span>.
+                    </li>
 
-    <p>Musashi emphasizes that the Way cannot be clearly explained in writing alone; you must **practice diligently** to understand how to win [38]. The spirit of "**one cut**" means winning with certainty [38]. The **true Way of Strategy is revealed in the long sword** [38].</p>
+                    <li>
+                        <span class="technique-title">Gaze</span>
+                        The gaze should be <strong>large and broad</strong>, described as the "twofold gaze: Perception and Sight" <span class="citation">[11]</span>. Perception is strong, while sight is weak <span class="citation">[11]</span>. In strategy, it is important to <strong>see distant things as if they were close and take a distanced view of close things</strong> <span class="citation">[11]</span>. You must focus on knowing the enemy's sword and not be distracted by insignificant movements <span class="citation">[11]</span>. This gaze is the same for single combat and large-scale strategy and should be used in everyday life, not varying whatever happens <span class="citation">[11, 12]</span>.
+                    </li>
 
-    <h2>Attaining the Way</h2>
+                    <li>
+                        <span class="technique-title">Holding the Long Sword</span>
+                        Grip the long sword with a floating feeling in the thumb and forefinger, tight with the last two fingers, and the middle finger neither tight nor slack <span class="citation">[12]</span>. There should be no play in your hands <span class="citation">[12]</span>. When taking up the sword, <strong>you must feel intent on cutting the enemy</strong> <span class="citation">[12]</span>. Do not change your grip when cutting, and your hands must not "cower" <span class="citation">[12]</span>. Fixedness is a dead hand; pliability is a living hand <span class="citation">[13]</span>.
+                    </li>
 
-    <p>The Water Book outlines the path to mastery in the Ni To Ichi school. To learn how to win with the long sword, you must first learn the five approaches and five attitudes, and **absorb the Way of the long sword naturally in your body** [39]. You need to understand spirit and timing, handle the long sword naturally, and move body and legs in harmony with your spirit [39]. By studying the book's contents and fighting with enemies, you will gradually come to know the principle of the Way [40].</p>
+                    <li>
+                        <span class="technique-title">Footwork</span>
+                        Tread firmly with your heels, with toe tips somewhat floating <span class="citation">[13]</span>. Feet must always move as in normal walking, whether moving fast or slow <span class="citation">[13]</span>. Musashi dislikes methods like "jumping-foot," "floating-foot," and "fixed-steps" <span class="citation">[13]</span>. "Yin-Yang foot" is important, meaning not moving only one foot, but moving left-right and right-left when cutting, withdrawing, or warding off <span class="citation">[14]</span>.
+                    </li>
 
-    <p>Diligent practice over the years leads to achieving the spirit of the warrior [40]. **Today is victory over yourself of yesterday; tomorrow is your victory over lesser men** [40]. To beat more skillful men, train according to this book, not being swayed by side-tracks [40]. Killing an enemy is not the true Way if it is not based on what you have learned [40]. If you attain this Way, you will be able to beat many men, and your sword-fighting ability will increase through battles and duels [41].</p>
+                    <li>
+                        <span class="technique-title">The Five Attitudes</span>
+                        These are Upper, Middle, Lower, Right Side, and Left Side <span class="citation">[14]</span>. The sole purpose is to <strong>cut the enemy</strong> <span class="citation">[14]</span>. Do not be conscious of making an attitude; think only of cutting <span class="citation">[14]</span>. Attitudes should be large or small according to the situation <span class="citation">[14]</span>. The Middle attitude is the heart of the attitudes <span class="citation">[15]</span>.
+                    </li>
 
-    <p>Ultimately, the Water Book is not just a manual of techniques but a guide to cultivating a fluid, adaptable, and intuitive spirit essential for victory in both combat and life [5, 6, 8].</p>
+                    <li>
+                        <span class="technique-title">The Way of the Long Sword</span>
+                        Knowing this means you can wield the sword with two fingers <span class="citation">[15]</span>. If you know the path of the sword well, you can wield it easily <span class="citation">[15]</span>. You must wield the long sword <strong>calmly</strong>, not quickly <span class="citation">[15]</span>. Trying to wield it quickly leads to "short sword chopping," which cannot cut down a man with a long sword <span class="citation">[16]</span>.
+                    </li>
 
-</article>
+                    <li>
+                        <span class="technique-title">The Five Approaches</span>
+                        These are specific methods tied to the five attitudes for engaging the enemy <span class="citation">[17-20]</span>. They involve actions like dashing, deflecting, cutting from different angles (upwards, downwards, sideways), parrying, and transitioning between attitudes <span class="citation">[17-20]</span>. Mastering these approaches, along with timing and understanding the enemy's sword, will allow you to <strong>always win</strong> <span class="citation">[18, 20]</span>.
+                    </li>
 
+                    <li>
+                        <span class="technique-title">Attitude No-Attitude</span>
+                        This teaching means there is <strong>no need for fixed long sword attitudes</strong>, though the five ways of holding the sword still exist <span class="citation">[21]</span>. How you hold the sword should simply make it easy to cut the enemy, adapting to the situation, place, and your relation to the enemy <span class="citation">[21]</span>. The principle is "Existing Attitude - Nonexisting Attitude" <span class="citation">[22]</span>. The primary intention is always to <strong>cut the enemy</strong> <span class="citation">[22]</span>. Every movement, whether parrying, hitting, springing, striking, or touching, must include the intention of cutting <span class="citation">[22]</span>.
+                    </li>
+
+                    <li>
+                        <span class="technique-title">Advanced Cutting Techniques</span>
+                        Various specific cuts are described, such as "In One Timing" (hitting instantly before the enemy decides to move) <span class="citation">[23]</span>, "Abdomen Timing of Two" (feinting and then cutting as the enemy relaxes) <span class="citation">[24]</span>, "No Design, No Conception" (hitting with body, spirit, and hands from the Void) <span class="citation">[25]</span>, "Flowing Water Cut" (cutting slowly, following the body like stagnant water) <span class="citation">[25]</span>, "Continuous Cut" (cutting multiple places with one sweep) <span class="citation">[26]</span>, "Fire and Stones Cut" (cutting strongly on impact without raising the sword) <span class="citation">[26, 27]</span>, and "Red Leaves Cut" (knocking down the enemy's sword) <span class="citation">[27]</span>.
+                    </li>
+
+                    <li>
+                        <span class="technique-title">Body Movement Principles</span>
+                        Concepts like "The Body in Place of the Long Sword" or "the long sword in place of the body" suggest prioritizing body movement or sword movement depending on the enemy <span class="citation">[28]</span>. "Chinese Monkey's Body" is about not stretching out your arms, getting in quickly with your whole body <span class="citation">[29]</span>. "Glue and Lacquer Emulsion Body" means sticking firmly to the enemy when you approach <span class="citation">[30]</span>. "To Strive for Height" is about striving for a superior position when closing with the enemy <span class="citation">[30]</span>. "To Apply Stickiness" involves hitting the enemy's sword so that they do not separate easily <span class="citation">[31]</span>. The "Body Strike" is striking the enemy's breast with your shoulder through a gap in their guard <span class="citation">[31]</span>.
+                    </li>
+
+                    <li>
+                        <span class="technique-title">Specialized Combat Techniques</span>
+                        Three methods to parry a cut are described, often involving thrusting at the enemy's eyes or face <span class="citation">[32, 33]</span>. "To Stab at the Face" means being intent on stabbing at the enemy's face with the sword point, making their body "rideable" <span class="citation">[33]</span>. "To Stab at the Heart" is used when cutting is difficult, thrusting at the enemy's breast without wavering the point <span class="citation">[34]</span>. "Scold Tut-TUT!" is a counter-cut with quick timing, thrusting up and cutting simultaneously with raising the sword <span class="citation">[35, 36]</span>. The "Smacking Parry" involves meeting the enemy's cut with a specific rhythm, primarily intending to cut them quickly rather than just parry <span class="citation">[36, 37]</span>.
+                    </li>
+
+                    <li>
+                        <span class="technique-title">Fighting Multiple Enemies</span>
+                        Against multiple opponents, use both swords, adopt a wide-stretched attitude, chase enemies around, observe their attacking order, and cut left and right alternately <span class="citation">[37]</span>. Drive them together and cut them down strongly without letting them recover <span class="citation">[37]</span>.
+                    </li>
+                </ul>
+
+                <div class="quote">
+                    The Way cannot be clearly explained in writing alone; you must practice diligently to understand how to win.
+                </div>
+
+                <p>Musashi emphasizes that the Way cannot be clearly explained in writing alone; you must <strong>practice diligently</strong> to understand how to win <span class="citation">[38]</span>. The spirit of "<strong>one cut</strong>" means winning with certainty <span class="citation">[38]</span>. The <strong>true Way of Strategy is revealed in the long sword</strong> <span class="citation">[38]</span>.</p>
+            </div>
+
+            <div class="section-divider">
+                <span>🌊</span>
+            </div>
+
+            <div class="mastery-section">
+                <h2>Attaining the Way</h2>
+                
+                <p>The Water Book outlines the path to mastery in the Ni To Ichi school. To learn how to win with the long sword, you must first learn the five approaches and five attitudes, and <strong>absorb the Way of the long sword naturally in your body</strong> <span class="citation">[39]</span>. You need to understand spirit and timing, handle the long sword naturally, and move body and legs in harmony with your spirit <span class="citation">[39]</span>. By studying the book's contents and fighting with enemies, you will gradually come to know the principle of the Way <span class="citation">[40]</span>.</p>
+
+                <p>Diligent practice over the years leads to achieving the spirit of the warrior <span class="citation">[40]</span>. <strong>Today is victory over yourself of yesterday; tomorrow is your victory over lesser men</strong> <span class="citation">[40]</span>. To beat more skillful men, train according to this book, not being swayed by side-tracks <span class="citation">[40]</span>. Killing an enemy is not the true Way if it is not based on what you have learned <span class="citation">[40]</span>. If you attain this Way, you will be able to beat many men, and your sword-fighting ability will increase through battles and duels <span class="citation">[41]</span>.</p>
+
+                <div class="quote">
+                    Today is victory over yourself of yesterday; tomorrow is your victory over lesser men.
+                </div>
+
+                <p>Ultimately, the Water Book is not just a manual of techniques but a guide to cultivating a fluid, adaptable, and intuitive spirit essential for victory in both combat and life <span class="citation">[5, 6, 8]</span>.</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.querySelector('.scroll-indicator').style.transform = `scaleX(${scrolled / 100})`;
+        });
+
+        // Smooth scrolling for better reading experience
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
