@@ -1,215 +1,679 @@
-<link href="css/styles.css" rel="stylesheet" />
-<header class="dsportfolio">
-    <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-        <div class="d-flex justify-content-center">
-            <div class="text-center">
-                <h1 class="mx-auto my-0 text-uppercase" > Blog Posts</h1>
-                <h2 class="text-white-50 mx-auto mt-2 mb-5"></h2>
-                <h2 class="text-white-50 mx-auto mt-2 mb-5">A dedicated blog section featuring weekly stock market analyses and results from ongoing personal research. Posts include technical breakdowns, indicator-based insights, and commentary on market trends to guide readers through current financial developments. Each entry integrates chart analysis, indicator signals, and practical observations, offering a transparent look into the author’s trading methodology and evolving strategies.</h2>
-                <a class="btn btn-primary" href="#projects">Follow up the blogs!</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts - Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --primary-dark: #5a6fd8;
+            --secondary-color: #764ba2;
+            --dark-bg: #1a1a1a;
+            --darker-bg: #0f0f0f;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --hover-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(26, 26, 26, 0.95) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .navbar-toggler {
+            border: none;
+            color: var(--text-primary);
+        }
+
+        /* Header Section */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 50%, var(--darker-bg) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="0.5" fill="%23ffffff" opacity="0.05"/><circle cx="75" cy="75" r="0.3" fill="%23667eea" opacity="0.03"/><circle cx="50" cy="10" r="0.4" fill="%23764ba2" opacity="0.04"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
+            color: white;
+        }
+
+        /* Blog Posts Section */
+        .blog-section {
+            padding: 5rem 0;
+            background: var(--dark-bg);
+        }
+
+        .blog-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .blog-card-image {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .blog-card:hover .blog-card-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-card-content {
+            padding: 2.5rem;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+        }
+
+        .blog-card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .blog-card-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .blog-card-button {
+            background: var(--gradient);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .blog-card-button:hover {
+            transform: translateX(5px);
+            color: white;
+        }
+
+        /* Search and Filter */
+        .blog-controls {
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .filter-button {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-button.active,
+        .filter-button:hover {
+            background: var(--gradient);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .blog-card-content {
+                padding: 2rem;
+            }
+            
+            .blog-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                min-width: auto;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Category badges */
+        .category-badge {
+            background: rgba(102, 126, 234, 0.2);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-home me-2"></i>Main Page
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <!-- Navigation items can be added here -->
             </div>
         </div>
-    </div>
-</header>
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container px-4 px-lg-5">
-      <a class="navbar-brand" href="index.html">Main Page</a>
-      <button
-        class="navbar-toggler navbar-toggler-right"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarResponsive"
-        aria-controls="navbarResponsive"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <!--ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#projects">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#signup">Playlists</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#signup">Best Movies</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#signup">Best Books</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#signup">Podcasts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#signup">Contact</a>
-          </li>
-        </ul-->
-      </div>
-    </div>
-  </nav>
-<section class="projects-section bg-light" id="projects">
-    <div class="container px-4 px-lg-5">
-        <Featured Project Row>
-            <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid" src="assets/img/Wind.jpeg" alt="..." /></div>
-                <div class="col-lg-6">
-                    <div class="bg-black text-center h-100 project">
-                        <div class="d-flex h-100">
-                            <div class="project-text w-100 my-auto text-center text-lg-left">
-                                <h2 class="text-white">Go Rin No Sho Wind Book</h2>
-                                <p class="mb-0 text-white-50">Chapter 4</p>
-                                <p class="mb-0 text-white-50"></p>
-                                <a class="btn btn-primary" href="BlogPosts/Wind.html">Continue to the blog post</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Blog Posts</h1>
+            <p class="hero-subtitle">
+                A dedicated blog section featuring weekly stock market analyses and results from ongoing personal research. Posts include technical breakdowns, indicator-based insights, and commentary on market trends to guide readers through current financial developments.
+            </p>
+            <a href="#blog-posts" class="cta-button">
+                <i class="fas fa-arrow-down me-2"></i>Explore Posts
+            </a>
+        </div>
+    </section>
+
+    <!-- Blog Posts Section -->
+    <section class="blog-section" id="blog-posts">
+        <div class="container px-4 px-lg-5">
+            <!-- Search and Filter Controls -->
+            <div class="blog-controls">
+                <input type="text" class="search-box" placeholder="Search blog posts..." id="searchInput">
+                <button class="filter-button active" data-filter="all">All</button>
+                <button class="filter-button" data-filter="business">Business</button>
+                <button class="filter-button" data-filter="philosophy">Philosophy</button>
+                <button class="filter-button" data-filter="psychology">Psychology</button>
+            </div>
+
+            <!-- Blog Posts Grid -->
+            <div class="row" id="blogGrid">
+                <!-- Entrepreneurship Post -->
+                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.1s">
+                    <div class="blog-card">
+                        <div class="blog-card-image">
+                            <img src="assets/img/entrepreneurship.jpg" alt="Entrepreneurship" />
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span class="category-badge">Business</span>
+                                <span><i class="fas fa-clock me-1"></i>15 min read</span>
                             </div>
+                            <h3 class="blog-card-title">Entrepreneurship Insights</h3>
+                            <p class="blog-card-description">
+                                Reviewed more than 100 entrepreneur speeches and distilled key insights into actionable strategies for building successful businesses.
+                            </p>
+                            <a href="BlogPosts/Entrepreneurship.html" class="blog-card-button">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>      
-        <!-- Project Row Eight-->
-        <div class="row gx-0 justify-content-center">
-            <div class="col-lg-6"><img class="img-fluid" src="assets/img/Fire.jpg" alt="..." /></div>
-            <div class="col-lg-6 order-lg-first">
-                <div class="bg-black text-center h-100 project">
-                    <div class="d-flex h-100">
-                        <div class="project-text w-100 my-auto text-center text-lg-right">
-                            <h4 class="text-white">Fire book Insights from Go Rin No Sho </h4>
-                            <p class="mb-0 text-white-50">Chapter 3 </p>
-                            <p class="mb-0 text-white-50">Solving the real life situations with fire book.</p>
-                            <p> </p>
-                            <a class="btn btn-primary" href="BlogPosts/Fire.html">Continue to the blog post</a>
+
+                <!-- Wind Book Post -->
+                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="philosophy" style="animation-delay: 0.2s">
+                    <div class="blog-card">
+                        <div class="blog-card-image">
+                            <img src="assets/img/Wind.jpeg" alt="Go Rin No Sho Wind Book" />
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span class="category-badge">Philosophy</span>
+                                <span><i class="fas fa-clock me-1"></i>12 min read</span>
+                            </div>
+                            <h3 class="blog-card-title">Go Rin No Sho: Wind Book</h3>
+                            <p class="blog-card-description">
+                                Chapter 4 of Miyamoto Musashi's legendary work, exploring the principles of adaptability and strategic thinking in combat and life.
+                            </p>
+                            <a href="BlogPosts/Wind.html" class="blog-card-button">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fire Book Post -->
+                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="philosophy" style="animation-delay: 0.3s">
+                    <div class="blog-card">
+                        <div class="blog-card-image">
+                            <img src="assets/img/Fire.jpg" alt="Fire Book Insights" />
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span class="category-badge">Philosophy</span>
+                                <span><i class="fas fa-clock me-1"></i>10 min read</span>
+                            </div>
+                            <h3 class="blog-card-title">Fire Book Insights from Go Rin No Sho</h3>
+                            <p class="blog-card-description">
+                                Chapter 3 analysis focusing on solving real-life situations using the strategic principles outlined in the Fire Book.
+                            </p>
+                            <a href="BlogPosts/Fire.html" class="blog-card-button">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Water Book Post -->
+                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="philosophy" style="animation-delay: 0.4s">
+                    <div class="blog-card">
+                        <div class="blog-card-image">
+                            <img src="assets/img/Water.webp" alt="Go Rin No Sho Water Book" />
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span class="category-badge">Philosophy</span>
+                                <span><i class="fas fa-clock me-1"></i>14 min read</span>
+                            </div>
+                            <h3 class="blog-card-title">Go Rin No Sho: Water Book</h3>
+                            <p class="blog-card-description">
+                                Chapter 2 exploration of fluid tactics and the importance of maintaining flexibility in strategy and execution.
+                            </p>
+                            <a href="BlogPosts/waterbook.html" class="blog-card-button">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ground Book Post -->
+                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="philosophy" style="animation-delay: 0.5s">
+                    <div class="blog-card">
+                        <div class="blog-card-image">
+                            <img src="assets/img/Ground.png" alt="Go Rin No Sho Ground Book" />
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span class="category-badge">Philosophy</span>
+                                <span><i class="fas fa-clock me-1"></i>11 min read</span>
+                            </div>
+                            <h3 class="blog-card-title">Go Rin No Sho: Ground Book</h3>
+                            <p class="blog-card-description">
+                                The greatest swordsman's Ground Book summary analyzed with NotebookLM, revealing foundational principles of strategy.
+                            </p>
+                            <a href="BlogPosts/GroundBook.html" class="blog-card-button">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alex Hormozi Blueprint Post -->
+                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.6s">
+                    <div class="blog-card">
+                        <div class="blog-card-image">
+                            <img src="assets/img/Alex-Simon.jpg" alt="Alex Hormozi Money Making Blueprint" />
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span class="category-badge">Business</span>
+                                <span><i class="fas fa-clock me-1"></i>18 min read</span>
+                            </div>
+                            <h3 class="blog-card-title">Alex Hormozi's Money Making Blueprint</h3>
+                            <p class="blog-card-description">
+                                In-depth review of Alex's blueprint with Simon Squib, analyzed using NotebookLM for actionable business insights.
+                            </p>
+                            <a href="BlogPosts/AlexSimon.html" class="blog-card-button">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ravikant Wealth Building Post -->
+                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.7s">
+                    <div class="blog-card">
+                        <div class="blog-card-image">
+                            <img src="assets/img/Ravikant.jpg" alt="Building Wealth From Ravikant" />
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span class="category-badge">Business</span>
+                                <span><i class="fas fa-clock me-1"></i>16 min read</span>
+                            </div>
+                            <h3 class="blog-card-title">Building Wealth From Ravikant</h3>
+                            <p class="blog-card-description">
+                                Focused analysis on wealth building strategies from Naval Ravikant's perspective, enhanced with NotebookLM insights.
+                            </p>
+                            <a href="BlogPosts/Ravikant.html" class="blog-card-button">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maslow's Hierarchy Post -->
+                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="psychology" style="animation-delay: 0.8s">
+                    <div class="blog-card">
+                        <div class="blog-card-image">
+                            <img src="assets/img/Maslow.jpg" alt="Maslow's Hierarchy of Needs" />
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span class="category-badge">Psychology</span>
+                                <span><i class="fas fa-clock me-1"></i>13 min read</span>
+                            </div>
+                            <h3 class="blog-card-title">Maslow's Hierarchy of Needs</h3>
+                            <p class="blog-card-description">
+                                Comprehensive analysis of Abraham Maslow's groundbreaking theory in psychology from his 1943 paper "A Theory of Human Motivation".
+                            </p>
+                            <a href="BlogPosts/Maslow.html" class="blog-card-button">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- $100 Million Offer Post -->
+                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.9s">
+                    <div class="blog-card">
+                        <div class="blog-card-image">
+                            <img src="assets/img/Alex$100.jpg" alt="$100 Million Dollar Offer" />
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span class="category-badge">Business</span>
+                                <span><i class="fas fa-clock me-1"></i>20 min read</span>
+                            </div>
+                            <h3 class="blog-card-title">$100 Million Dollar Offer</h3>
+                            <p class="blog-card-description">
+                                Detailed review of Alex Hormozi's transformative book using NotebookLM analysis to extract key business strategies.
+                            </p>
+                            <a href="BlogPosts/$100_Offer.html" class="blog-card-button">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Huberman Lab Post -->
+                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="psychology" style="animation-delay: 1.0s">
+                    <div class="blog-card">
+                        <div class="blog-card-image">
+                            <img src="assets/img/HubermanLab.jpg" alt="Huberman Lab Neuroscience" />
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span class="category-badge">Psychology</span>
+                                <span><i class="fas fa-clock me-1"></i>22 min read</span>
+                            </div>
+                            <h3 class="blog-card-title">Using Neuroscience to Upgrade Focus & Energy</h3>
+                            <p class="blog-card-description">
+                                Science-based tools from Huberman Lab with ChatGPT analysis for improving focus, energy, and stress recovery.
+                            </p>
+                            <a href="BlogPosts/HubermanFocus.html" class="blog-card-button">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Project Row Seven-->
-        <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-            <div class="col-lg-6"><img class="img-fluid" src="assets/img/Water.webp" alt="..." /></div>
-            <div class="col-lg-6">
-                <div class="bg-black text-center h-100 project">
-                    <div class="d-flex h-100">
-                        <div class="project-text w-100 my-auto text-center text-lg-left">
-                            <h2 class="text-white">Go Rin No Sho Water Book</h2>
-                            <p class="mb-0 text-white-50">Chapter 2</p>
-                            <p class="mb-0 text-white-50"></p>
-                            <a class="btn btn-primary" href="BlogPosts/waterbook.html">Continue to the blog post</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>        
-        <!-- Project Row Six-->
-        <div class="row gx-0 justify-content-center">
-            <div class="col-lg-6"><img class="img-fluid" src="assets/img/Ground.png" alt="..." /></div>
-            <div class="col-lg-6 order-lg-first">
-                <div class="bg-black text-center h-100 project">
-                    <div class="d-flex h-100">
-                        <div class="project-text w-100 my-auto text-center text-lg-right">
-                            <h4 class="text-white">Go Rin No Sho Ground Book</h4>
-                            <p class="mb-0 text-white-50">It's the gratest swordsman's ground book summary with NotebookLM.</p>
-                            <p> </p>
-                            <a class="btn btn-primary" href="BlogPosts/GroundBook.html">Continue to the blog post</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Project Row Five-->
-        <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-            <div class="col-lg-6"><img class="img-fluid" src="assets/img/Alex-Simon.jpg" alt="..." /></div>
-            <div class="col-lg-6">
-                <div class="bg-black text-center h-100 project">
-                    <div class="d-flex h-100">
-                        <div class="project-text w-100 my-auto text-center text-lg-left">
-                            <h2 class="text-white">Alex Hormozi's Money Making Blueprint with Simon Squib</h2>
-                            <p class="mb-0 text-white-50">In this post I reviewed Alex's blueprint with NotebookLM.</p>
-                            <p> </p>
-                            <a class="btn btn-primary" href="BlogPosts/AlexSimon.html">Continue to the blog post</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Project Row Four -->
-        <div class="row gx-0 justify-content-center">
-            <div class="col-lg-6"><img class="img-fluid" src="assets/img/Ravikant.jpg" alt="..." /></div>
-            <div class="col-lg-6 order-lg-first">
-                <div class="bg-black text-center h-100 project">
-                    <div class="d-flex h-100">
-                        <div class="project-text w-100 my-auto text-center text-lg-right">
-                            <h4 class="text-white">Building Wealth From Ravikant With NotebookLM</h4>
-                            <p class="mb-0 text-white-50">We focused how to build a wealth with perspective on Ravikant.</p>
-                            <p> </p>
-                            <a class="btn btn-primary" href="BlogPosts/Ravikant.html">Continue to the blog post</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Project Row Three-->
-        <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-            <div class="col-lg-6"><img class="img-fluid" src="assets/img/Maslow.jpg" alt="..." /></div>
-            <div class="col-lg-6">
-                <div class="bg-black text-center h-100 project">
-                    <div class="d-flex h-100">
-                        <div class="project-text w-100 my-auto text-center text-lg-left">
-                            <h2 class="text-white">Maslow's Hierarchy of Needs</h2>
-                            <p class="mb-0 text-white-50">Maslow's Hierarchy of Needs is a theory in psychology proposed by Abraham Maslow in his 1943 paper "A Theory of Human Motivation".</p>
-                            <p> </p>
-                            <a class="btn btn-primary" href="BlogPosts\Maslow.html">Continue to the blog post</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Project Row Two-->
-        <div class="row gx-0 justify-content-center">
-            <div class="col-lg-6"><img class="img-fluid" src="assets/img/Alex$100.jpg" alt="..." /></div>
-            <div class="col-lg-6 order-lg-first">
-                <div class="bg-black text-center h-100 project">
-                    <div class="d-flex h-100">
-                        <div class="project-text w-100 my-auto text-center text-lg-right">
-                            <h4 class="text-white">$100 Million Dollar Offer with NotebookLM</h4>
-                            <p class="mb-0 text-white-50">Reviewed the Alex Hormozi's book with NotebookLM.</p>
-                            <p> </p>
-                            <a class="btn btn-primary" href="BlogPosts/$100_Offer.html">Continue to the blog post</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Project Row One-->
-        <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-            <div class="col-lg-6"><img class="img-fluid" src="assets/img/HubermanLab.jpg" alt="..." /></div>
-            <div class="col-lg-6">
-                <div class="bg-black text-center h-100 project">
-                    <div class="d-flex h-100">
-                        <div class="project-text w-100 my-auto text-center text-lg-left">
-                            <h2 class="text-white">How I’m Using Neuroscience to Upgrade My Focus, Energy, and Stress Recovery</h2>
-                            <p class="mb-0 text-white-50">Science-based tools from Huberman Lab with ChatGPT analysis.</p>
-                            <p> </p>
-                            <a class="btn btn-primary" href="BlogPosts\HubermanFocus.html">Continue to the blog post</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            const searchInput = document.getElementById('searchInput');
+            const blogItems = document.querySelectorAll('.blog-item');
+            const filterButtons = document.querySelectorAll('.filter-button');
 
+            // Search filter
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                filterPosts(searchTerm, getActiveFilter());
+            });
 
+            // Category filter
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active filter button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const searchTerm = searchInput.value.toLowerCase();
+                    const category = this.getAttribute('data-filter');
+                    filterPosts(searchTerm, category);
+                });
+            });
 
+            function getActiveFilter() {
+                const activeButton = document.querySelector('.filter-button.active');
+                return activeButton ? activeButton.getAttribute('data-filter') : 'all';
+            }
 
+            function filterPosts(searchTerm, category) {
+                blogItems.forEach(item => {
+                    const title = item.querySelector('.blog-card-title').textContent.toLowerCase();
+                    const description = item.querySelector('.blog-card-description').textContent.toLowerCase();
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+                    const matchesCategory = category === 'all' || itemCategory === category;
+                    
+                    if (matchesSearch && matchesCategory) {
+                        item.style.display = 'block';
+                        item.style.animation = 'fadeIn 0.5s ease-out forwards';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
 
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
 
-<!-- todo's
-    3 Take a good picture for each project
-    6 Arrange this page's text color.
-    7 Yazıların fontları farklı -->
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 100) {
+                    navbar.style.background = 'rgba(26, 26, 26, 0.98)';
+                } else {
+                    navbar.style.background = 'rgba(26, 26, 26, 0.95)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

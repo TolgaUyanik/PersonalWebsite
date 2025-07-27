@@ -2,137 +2,632 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alex Hormozi's Blueprint for a Million-Dollar Business</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #f59e0b;
+            --text-primary: #465f81;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-accent: #eff6ff;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
         body {
-            font-family: sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f4f4f4;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
         }
+
         .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
         }
-        h1, h2, h3 {
-            color: #333;
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            border-radius: 20px;
+            color: white;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
         }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        .step-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .step-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--bg-accent);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .step-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .step-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .framework-box {
+            background: var(--bg-accent);
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .framework-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .framework-title::before {
+            content: '🎯';
+            margin-right: 0.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        ul, ol {
+            margin: 1.5rem 0;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            list-style: none;
+        }
+
+        ul li::before {
+            content: '▶';
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        ol li::before {
+            content: counter(list-counter);
+            counter-increment: list-counter;
+            background: var(--primary-color);
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+            top: 0.125rem;
+        }
+
+        ol {
+            counter-reset: list-counter;
+        }
+
         strong {
-            color: #0056b3;
+            color: var(--primary-color);
+            font-weight: 600;
         }
+
+        .value-equation {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .table-of-contents {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .toc-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .toc-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0.75rem;
+            margin: 0;
+        }
+
+        .toc-item {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            list-style: none;
+            margin: 0;
+        }
+
+        .toc-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .toc-item a {
+            text-decoration: none;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .toc-number {
+            background: var(--primary-color);
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
         .citation {
-            font-size: 0.9em;
-            color: #555;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .content {
+                padding: 2rem 1.5rem;
+            }
+
+            .header {
+                padding: 2rem 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .toc-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus styles for accessibility */
+        .toc-item:focus-within {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Alex Hormozi's 9-Step Blueprint to Build a Million-Dollar Business</h1>
+        <header class="header">
+            <h1>Alex Hormozi's Blueprint</h1>
+            <p class="subtitle">9 Steps to Build a Million-Dollar Business</p>
+        </header>
 
-        <p>Drawing on his diverse experience from gyms to software startups, Alex Hormozi shares a powerful 9-step blueprint designed to build a business worth a million dollars. This framework provides a structured approach to tackle the key challenges entrepreneurs face [1, 2]. Let's dive into each step.</p>
+        <main class="content">
+            <p class="intro-text">
+                Drawing on his diverse experience from gyms to software startups, Alex Hormozi shares a powerful 9-step blueprint designed to build a business worth a million dollars. This framework provides a structured approach to tackle the key challenges entrepreneurs face.
+            </p>
 
-        <h2>1. Figuring Out Who You Are</h2>
-        <p>This first step addresses the often-confusing concept of identity and traits [3]. Instead of wishing for inherent traits like charisma or patience, Alex suggests translating these desired traits into concrete, observable **behaviors** [3, 4]. Traits are essentially "bundled terms" – single words representing a series of underlying actions [3, 5, 6]. For example, charisma isn't something you're born with; it's the result of specific behaviors like nodding when someone talks, repeating what they say, smiling, making eye contact, speaking with volume and varied tonality, and shaking hands firmly [4-6]. By focusing on performing these micro-behaviors, you can be perceived as having the trait, making seemingly unattainable qualities achievable through action [4, 7].</p>
-        <p>This concept aligns with the idea of breaking down complex skills [7]. Just as building a company can be broken into skills like advertising, selling, hiring, etc. [8], personal traits are broken down into simple, actionable behaviors [7, 8]. This leads to the core principle: **do to be** [9, 10]. Don't wait to *be* a certain person to *do* something; the doing creates the being [9, 10]. Doing is the action you control, and others describe your being based on your doing [10]. Alex fundamentally believes that **all things are trainable**, differing only in the resources required or the rate of learning (intelligence) [11-13]. Therefore, anyone can train to become anything, including an entrepreneur [10, 11, 14]. Instead of focusing on who you *wish* you were, identify the version you want to be, list their traits, and then define the behaviors associated with those traits [4, 15]. A crucial insight is to model the *rise* of people you admire – what they did when they were starting out – rather than just where they are today [16-18]. Ultimately, the summary of this phase is simple: **do something** [19, 20]. Nothing changes until you take action [20].</p>
+            <nav class="table-of-contents">
+                <h2 class="toc-title">Blueprint Overview</h2>
+                <ul class="toc-list">
+                    <li class="toc-item">
+                        <a href="#step1">
+                            <span class="toc-number">1</span>
+                            Figuring Out Who You Are
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#step2">
+                            <span class="toc-number">2</span>
+                            Who to Sell To & What to Sell
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#step3">
+                            <span class="toc-number">3</span>
+                            Get Them To Buy
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#step4">
+                            <span class="toc-number">4</span>
+                            How Many Times
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#step5">
+                            <span class="toc-number">5</span>
+                            Who Helps You
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#step6">
+                            <span class="toc-number">6</span>
+                            Keep Your Advantage
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#step7">
+                            <span class="toc-number">7</span>
+                            Stick With It
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#step8">
+                            <span class="toc-number">8</span>
+                            Getting Better
+                        </a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#step9">
+                            <span class="toc-number">9</span>
+                            Never Stop
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
-        <h2>2. Who to Sell To & What to Sell Them</h2>
-        <p>Steps two and three are tightly linked because your choice of who to sell to directly influences what you will sell [20, 21]. When figuring out **what to sell**, Alex often focuses on services, noting that 80% of US businesses are services, making them an easy way to start [21, 22]. Businesses can often be derived from one of three "Ps" [21]:</p>
-        <ul>
-            <li>**Pain:** Something painful you overcame (e.g., figuring out how to advertise, managing food allergies) [15, 22]. Saving people time can translate to pain relief [15].</li>
-            <li>**Profession:** A skill you use in your job that you can fractionalize or sell to other companies [15, 23].</li>
-            <li>**Passion:** Something you love or are interested in (e.g., model cars), around which you can build various business models [23, 24].</li>
-        </ul>
-        <p>The most common and often easiest person to **sell to** is someone like yourself [24]. This is because you have lived with the problem ("living with the problem") and deeply understand their desires and struggles, reducing the need for extensive market research [24-26]. Mark Zuckerberg building Facebook to solve his own social awkwardness is cited as an example [26].</p>
-        <p>When selecting *who* to sell to, beyond selling to yourself, there are four crucial market characteristics to consider [27, 28]:</p>
-        <ul>
-            <li>They have the **money** for your offering [29, 30].</li>
-            <li>They are **easy to find** (directories, associations, conferences) [29, 31].</li>
-            <li>The market is **growing** (more demand than supply) [31, 32].</li>
-            <li>They are in **pain** – experiencing problems they'd rather not deal with, whether significant or minor annoyances [33, 34]. Searing hot pain is ideal [33].</li>
-        </ul>
-        <p>Selling to the wrong person, even with a great service, can lead to failure [35, 36]. The same product or service can have vastly different values depending on the customer [37-40]. The car story illustrates this, where the value jumped dramatically when sold to a collector instead of a pawn shop or dealership [37, 38, 41]. Similarly, a CRO expert doing the same work adds significantly more value to a $100 million business than a $1 million business, allowing them to charge more [36, 39, 40]. It is emphasized that sometimes the value is not in the execution (e.g., design), but in the concept or idea being sold [40, 42, 43].</p>
+            <section id="step1" class="step-section">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h2 class="step-title">Figuring Out Who You Are</h2>
+                </div>
+                <div class="step-content">
+                    <p>This first step addresses the often-confusing concept of identity and traits. Instead of wishing for inherent traits like charisma or patience, Alex suggests translating these desired traits into concrete, observable <strong>behaviors</strong>. Traits are essentially "bundled terms" – single words representing a series of underlying actions.</p>
 
-        <h2>3. Get Them To Buy</h2>
-        <p>Once you know who you're selling to and what you're selling, the next step is getting them to pay [44]. Alex uses the **CLOSER** framework for sales conversations [44, 45]:</p>
-        <ul>
-            <li><strong>C</strong>larify: Ask why they are there or what they are struggling with [45, 46]. Every lead shows some initial interest, so you just need to understand their motivation [46, 47].</li>
-            <li><strong>L</strong>abel: Summarize the problem back to them ("It sounds like you're here because...") to build rapport and confirm understanding [46, 48]. This is active listening [48].</li>
-            <li><strong>O</strong>verview: Explore their past experiences trying to solve the problem (the Pain Cycle) [48, 49]. Alex sees salespeople as motivational speakers, and motivation comes from deprivation [49, 50]. The goal here is to remind them of the pain they've experienced and how past solutions didn't work [50, 51]. Ask permission to present your solution after this [52].</li>
-            <li><strong>S</strong>ell: **Sell the 'vacation', not the 'plane flight'** [52-54]. Focus on the desired outcome and how they will feel (the 'sizzle'), not the technical details or process (the 'steak') [53, 54]. Use a three-pillar pitch structure, explaining key benefits or components using simple statements and relatable metaphors or stories [55-60].</li>
-            <li><strong>E</strong>xplain: Address their concerns [61]. Common concerns include timing, preference, money/ROI, stalls ("I need to think about it"), past negative experiences, and needing to consult a decision maker [61, 62]. Provide logical arguments, proof (testimonials), or flexible payment terms to address money/ROI [63-65]. For stalls, help them make a logical decision and uncover the underlying fear [64-66]. For past negative experiences ("burned before"), use metaphors (like dating after a bad relationship) to explain why one bad experience doesn't preclude a future good one [67-69]. Decision maker concerns are addressed by trying to get them on the call or helping the prospect understand why the decision maker would support solving a problem they already acknowledge [70-73]. Money-back guarantees or delayed payments can reduce perceived risk and overcome objections [74, 75].</li>
-            <li><strong>R</strong>einforce: After the sale, reinforce that they made a great decision and facilitate a smooth transition to onboarding or customer success [76-78]. This helps prevent buyer's remorse [76]. Limited supply (like a waiting list) can also be a psychological tactic to encourage commitment [78].</li>
-        </ul>
+                    <div class="highlight-box">
+                        <strong>Core Principle: Do to Be</strong> – Don't wait to <em>be</em> a certain person to <em>do</em> something; the doing creates the being.
+                    </div>
 
-        <h2>4. How Many Times</h2>
-        <p>The goal isn't just a single sale; it's to create customers who buy repeatedly [79, 80]. As Dan Kennedy says, "you don't get customers to make sales; you make sales to get customers" [79]. Here are **eight ways to make more money** from an existing customer [33, 80]:</p>
-        <ul>
-            <li>**Increase Price:** Charge more for what you offer [80].</li>
-            <li>**Decrease Cost:** Lower your operational costs to increase margin (e.g., optimize service ratio, use technology, go offshore) [81].</li>
-            <li>**Ask Again (Quantity):** Get them to buy more of the same thing immediately [81].</li>
-            <li>**Continuity (Subscription):** Get them to buy the same thing repeatedly over time (e.g., burger subscription) [82, 83].</li>
-            <li>**Increase Quality:** Offer a better, premium version of the product or service [82, 84].</li>
-            <li>**Downsell:** Offer a less expensive or smaller version if they say no to the main offer, turning a 'no' into a 'yes' [82, 83].</li>
-            <li>**Cross-sell:** Offer complementary products or services (e.g., fries and a drink with a burger) [83, 85].</li>
-            <li>**Lower Quality (Economical):** Offer a basic or entry-level version (sometimes by strategically reducing quality of the standard offering over time to drive upgrades, like HP printers) [84, 86].</li>
-        </ul>
-        <p>Alex highlights the concept of the **problem/solution cycle**: solving one problem for a customer often creates new problems or needs that you can then solve with additional offers [85, 87, 88]. More importantly, customers often enter **hyper-buying cycles** after making a significant decision or adopting a new identity (e.g., deciding to run a marathon, getting a new pet, getting married) [88-90]. In this state, they are motivated to buy many related items within a short period [89, 90]. If you don't make these relevant offers at the right time, they will buy them elsewhere [90, 91]. Offers are only bad if they are irrelevant or mistimed [91]. Building trust (brand) is crucial as customers are more likely to buy additional items from a source they already trust [92].</p>
+                    <p>For example, charisma isn't something you're born with; it's the result of specific behaviors like nodding when someone talks, repeating what they say, smiling, making eye contact, speaking with volume and varied tonality, and shaking hands firmly. By focusing on performing these micro-behaviors, you can be perceived as having the trait, making seemingly unattainable qualities achievable through action.</p>
 
-        <h2>5. Who Helps You</h2>
-        <p>To scale, you need a team [93]. The process for finding employees mirrors the process for finding customers [93, 94]. You can use the same **four ways to let people know about stuff** [95]:</p>
-        <ul>
-            <li>**Warm Outreach:** Reaching out to people you know [96].</li>
-            <li>**One-to-Many (Known):** Posting on your social media or network [96].</li>
-            <li>**Cold Outreach:** Reaching out to people you don't know (e.g., cold calling, emailing) [93].</li>
-            <li>**One-to-Many (Unknown):** Running paid advertisements (e.g., on job boards) [93, 96].</li>
-        </ul>
-        <p>The pipeline for building a team also resembles the customer pipeline [94]:</p>
-        <ul>
-            <li>**Application Generation:** Attracting candidates using the four methods above [94, 97].</li>
-            <li>**Nurture:** Keeping candidates engaged, recognizing that top candidates find jobs quickly [97, 98].</li>
-            <li>**Sales (Interview):** The interview process is a two-way street; you need to sell top talent on why they should work for you just as much as they sell themselves [99, 100]. Good people have options and need compelling reasons to join [99, 100].</li>
-            <li>**Onboarding:** A thorough onboarding process upfront reduces the need for future work and helps new hires become proficient faster [101-103].</li>
-            <li>**Retention/Ascension:** Keep good talent by providing growth opportunities and a clear career path [103-105]. Defining roles and promotions by observable behaviors ("doing the role") makes progression clear and ensures buy-in [104].</li>
-        </ul>
-        <p>Offering growth is a key factor in retaining employees [105]. Permanent recruiting is often a main job for CEOs [106].</p>
+                    <p>Alex fundamentally believes that <strong>all things are trainable</strong>, differing only in the resources required or the rate of learning (intelligence). Therefore, anyone can train to become anything, including an entrepreneur. Instead of focusing on who you <em>wish</em> you were, identify the version you want to be, list their traits, and then define the behaviors associated with those traits.</p>
 
-        <h2>6. Keep Your Advantage</h2>
-        <p>Maintaining your edge in the market is crucial [105]. Alex defines **strategy** simply as the **prioritization of resources** [107, 108]. Keeping your advantage is closely tied to your **brand**, which acts as a virtuous cycle [106, 109]. Brand is built on what you say about yourself, what others (friends) say about you, and the actual experience people have with your product or service [106, 110, 111]. The experience is paramount; good advertising means little if the product is bad [109, 111]. Your brand makes a promise, and while the promise may remain consistent, the *way* you fulfill that promise must evolve through continuous improvement and innovation [109, 112].</p>
-        <p>Alex's R&D process involved constantly identifying customers' biggest problems and prioritizing solutions based on four factors [112, 113]:</p>
-        <ul>
-            <li>**Impact:** How much people are suffering from the problem [114].</li>
-            <li>**Reach:** How many people are suffering from the problem [113, 114].</li>
-            <li>**Confidence:** How likely a potential solution is to solve the problem [114].</li>
-            <li>**Expense:** How much it costs *you* to implement the solution [114].</li>
-        </ul>
-        <p>This allows for strategic allocation of resources to get the best return [107]. A core framework for understanding and increasing value is the **Value Equation** [115]:</p>
-        <p><strong>Value = (Dream Outcome &times; Perceived Likelihood of Achievement) / (Time Delay &times; Effort &amp; Sacrifice)</strong> [115-117]</p>
-        <p>To increase the value of your offering, you must increase the desired **Dream Outcome** and the customer's **Perceived Likelihood of Achievement**, while decreasing the **Time Delay** (how long it takes to get results) and the **Effort & Sacrifice** required from the customer [117]. Top companies often focus heavily on reducing time delay and effort/sacrifice (operational excellence) [118]. Blockbuster failed to keep its advantage because Netflix offered less time delay and less sacrifice (no trip to the store, no late fees) [119, 120]. Making promises (Dream Outcome/Perceived Likelihood) that are too big without delivering can damage your brand [121].</p>
+                    <p>A crucial insight is to model the <em>rise</em> of people you admire – what they did when they were starting out – rather than just where they are today. Ultimately, the summary of this phase is simple: <strong>do something</strong>. Nothing changes until you take action.</p>
+                </div>
+            </section>
 
-        <h2>7. Stick With It</h2>
-        <p>This step is about perseverance, as many of the best gains come from sticking with something for the long haul, appearing only at the very end of the compounding curve [121-123]. An expert is defined as someone who has made more mistakes than anyone else in a very narrow field [124]. The question is, how do people stick with it through difficult times? Alex links motivation to **deprivation** [124, 125]. While physiological needs like hunger are inherent motivators, psychological constructs like money don't work the same way [126]. Psychological deprivation is often self-created [127].</p>
-        <p>Your **reference group** – the people you compare yourself to, not just those you spend time with – significantly impacts your long-term financial well-being [127, 128]. Alex advises taking advice from people closest to your goals, even if they aren't the people closest to you personally [128, 129]. Heroes and mentors (even aspirational ones) can provide guidance [129]. The principle of "doing to be" applies here; consistently performing actions associated with perseverance can make you a persistent person, regardless of how you feel [130, 131].</p>
-        <p>For Alex, his motivation often stemmed from a deep fear of failure or a perceived deprivation of respect [132, 133]. His core mantra during difficult times was **"as long as I don't quit, I win"** [134]. He compares the struggle to historical experiences of forced labor with no upside, realizing he could endure challenges with the potential for reward [133, 135]. Viewing business as an **infinite game** where success is measured by simply staying in the game is powerful [135-137]. Failure only occurs if you choose to stop [137]. Don't let negative comments or external doubts push you to quit [138].</p>
-        <p>Alex advises to **"use what you've got"** as fuel [138, 139]. While passion is great, sometimes initial motivation comes from less positive emotions like shame or anger [139, 140]. This fuel can change over time, but don't let the wish for a different fuel stop you from starting [140]. Finally, recognize that there are **trade-offs** [140]. Achieving significant goals requires sacrificing other things (time, hobbies, certain relationships) [141]. You must be willing to name and pay the price [140, 142]. The **North Star Question** to guide these decisions is: **"Does having X in my life increase the chance I hit my goal?"** [143]. If not, cutting out X (people, activities) might be necessary [143-145]. Limiting choices, like "burning the boats," can also force commitment and increase motivation [146, 147].</p>
+            <section id="step2" class="step-section">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h2 class="step-title">Who to Sell To & What to Sell Them</h2>
+                </div>
+                <div class="step-content">
+                    <p>Steps two and three are tightly linked because your choice of who to sell to directly influences what you will sell. When figuring out <strong>what to sell</strong>, Alex often focuses on services, noting that 80% of US businesses are services, making them an easy way to start.</p>
 
-        <h2>8. Getting Better</h2>
-        <p>Improvement is based on action and analysis [148]. Alex defines **Work = Volume &times; Leverage**, resulting in **Output** [149]. Leverage represents your skill or effectiveness. Doing volume (taking many actions) is necessary to build skill (leverage) [149, 150]. The process for getting better involves [151, 152]:</p>
-        <ol>
-            <li>**Do volume:** Take a large number of actions (e.g., make 100 sales calls, create 100 social media posts) [151, 153, 154].</li>
-            <li>**Analyze:** Look back at the results (e.g., the 100 calls/posts) and identify what worked best (the top 10%) [154-156]. Use a **common factors analysis** to determine what characteristics or behaviors were consistent in the successful outcomes compared to the less successful ones [154, 156].</li>
-            <li>**Do more of what worked:** Based on the analysis, adjust your actions to replicate the successful behaviors in the next set of volume [154, 156, 157].</li>
-        </ol>
-        <p>Repeat this cycle continuously [157]. Everyone starts at zero [152, 157]. The majority of millionaires are self-made, meaning they started with nothing [152, 158]. Starting at zero, with only time, can even be a competitive advantage because you have nothing to lose [158, 159]. This process of volume, analysis, and adjustment can be applied to any area of life, not just business, such as improving personal relationships or achieving personal goals [153, 154, 160-165]. Recording details of your actions and outcomes is essential for effective analysis [154].</p>
+                    <div class="framework-box">
+                        <div class="framework-title">The Three P's Framework</div>
+                        <ul>
+                            <li><strong>Pain:</strong> Something painful you overcame (e.g., figuring out how to advertise, managing food allergies). Saving people time can translate to pain relief.</li>
+                            <li><strong>Profession:</strong> A skill you use in your job that you can fractionalize or sell to other companies.</li>
+                            <li><strong>Passion:</strong> Something you love or are interested in (e.g., model cars), around which you can build various business models.</li>
+                        </ul>
+                    </div>
 
-        <h2>9. Never Stop</h2>
-        <p>This final step is the culmination of the previous ones [2]. It embodies the mindset of the infinite game [135]. Building a million-dollar business, and achieving sustained success in life, is not about reaching a finish line but about the continuous process of sticking with it, doing the volume, getting better through analysis and adjustment, and adapting as needed [136, 137, 152, 157].</p>
+                    <p>The most common and often easiest person to <strong>sell to</strong> is someone like yourself. This is because you have lived with the problem ("living with the problem") and deeply understand their desires and struggles, reducing the need for extensive market research. Mark Zuckerberg building Facebook to solve his own social awkwardness is cited as an example.</p>
 
-        <p>Alex Hormozi's blueprint offers a practical, behavior-focused approach to entrepreneurship and personal growth. By breaking down complex goals into manageable behaviors, focusing on the right customers, mastering the sales process, maximizing value from relationships, building a strong team, strategically prioritizing resources, committing to perseverance, and continuously improving through action and analysis, individuals can navigate the path toward building a successful business.</p>
-    </div>
-</body>
-</html>
+                    <div class="framework-box">
+                        <div class="framework-title">Four Market Characteristics</div>
+                        <ul>
+                            <li>They have the <strong>money</strong> for your offering</li>
+                            <li>They are <strong>easy to find</strong> (directories, associations, conferences)</li>
+                            <li>The market is <strong>growing</strong> (more demand than supply)</li>
+                            <li>They are in <strong>pain</strong> – experiencing problems they'd rather not deal with, whether significant or minor annoyances. Searing hot pain is ideal</li>
+                        </ul>
+                    </div>
+
+                    <p>Selling to the wrong person, even with a great service, can lead to failure. The same product or service can have vastly different values depending on the customer. The car story illustrates this, where the value jumped dramatically when sold to a collector instead of a pawn shop or dealership. Similarly, a CRO expert doing the same work adds significantly more value to a $100 million business than a $1 million business, allowing them to charge more.</p>
+                </div>
+            </section>
+
+            <section id="step3" class="step-section">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <h2 class="step-title">Get Them To Buy</h2>
+                </div>
+                <div class="step-content">
+                    <p>Once you know who you're selling to and what you're selling, the next step is getting them to pay. Alex uses the <strong>CLOSER</strong> framework for sales conversations:</p>
+
+                    <div class="framework-box">
+                        <div class="framework-title">The CLOSER Sales Framework</div>
+                        <ul>
+                            <li><strong>C</strong>larify: Ask why they are there or what they are struggling with. Every lead shows some initial interest, so you just need to understand their motivation.</li>
+                            <li><strong>L</strong>abel: Summarize the problem back to them ("It sounds like you're here because...") to build rapport and confirm understanding. This is active listening.</li>
+                            <li><strong>O</strong>verview: Explore their past experiences trying to solve the problem (the Pain Cycle). The goal here is to remind them of the pain they've experienced and how past solutions didn't work.</li>
+                            <li><strong>S</strong>ell: <strong>Sell the 'vacation', not the 'plane flight'</strong>. Focus on the desired outcome and how they will feel (the 'sizzle'), not the technical details or process (the 'steak').</li>
+                            <li><strong>E</strong>xplain: Address their concerns. Common concerns include timing, preference, money/ROI, stalls ("I need to think about it"), past negative experiences, and needing to consult a decision maker.</li>
+                            <li><strong>R</strong>einforce: After the sale, reinforce that they made a great decision and facilitate a smooth transition to onboarding or customer success. This helps prevent buyer's remorse.</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box">
+                        Remember: You're not just selling a product or service – you're selling a transformation and a better future state.
+                    </div>
+                </div>
+            </section>
+
+            <section id="step4" class="step-section">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <h2 class="step-title">How Many Times</h2>
+                </div>
+                <div class="step-content">
+                    <p>The goal isn't just a single sale; it's to create customers who buy repeatedly. As Dan Kennedy says, "you don't get customers to make sales; you make sales to get customers." Here are <strong>eight ways to make more money</strong> from an existing customer:</p>
+
+                    <div class="framework-box">
+                        <div class="framework-title">Eight Revenue Multipliers</div>
+                        <ul>
+                            <li><strong>Increase Price:</strong> Charge more for what you offer</li>
+                            <li><strong>Decrease Cost:</strong> Lower your operational costs to increase margin</li>
+                            <li><strong>Ask Again (Quantity):</strong> Get them to buy more of the same thing immediately</li>
+                            <li><strong>Continuity (Subscription):</strong> Get them to buy the same thing repeatedly over time</li>
+                            <li><strong>Increase Quality:</strong> Offer a better, premium version of the product or service</li>
+                            <li><strong>Downsell:</strong> Offer a less expensive or smaller version if they say no to the main offer</li>
+                            <li><strong>Cross-sell:</strong> Offer complementary products or services</li>
+                            <li><strong>Lower Quality (Economical):</strong> Offer a basic or entry-level version</li>
+                        </ul>
+                    </div>
+
+                    <p>Alex highlights the concept of the <strong>problem/solution cycle</strong>: solving one problem for a customer often creates new problems or needs that you can then solve with additional offers. More importantly, customers often enter <strong>hyper-buying cycles</strong> after making a significant decision or adopting a new identity (e.g., deciding to run a marathon, getting a new pet, getting married).</p>
+
+                    <p>In this state, they are motivated to buy many related items within a short period. If you don't make these relevant offers at the right time, they will buy them elsewhere. Offers are only bad if they are irrelevant or mistimed. Building trust (brand) is crucial as customers are more likely to buy additional items from a source they already trust.</p>
+                </div>
+            </section>
+
+            <section id="step5" class="step-section">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <h2 class="step-title">Who Helps You</h2>
+                </div>
+                <div class="step-content">
+                    <p>To scale, you need a team. The process for finding employees mirrors the process for finding customers. You can use the same <strong>four ways to let people know about stuff</strong>:</p>
+
+                    <div class="framework-box">
+                        <div class="framework-title">Four Recruitment Channels</div>
+                        <ul>
+                            <li><strong>Warm Outreach:</strong> Reaching out to people you know</li>
+                            <li><strong>One-to-Many (Known):</strong> Posting on your social media or network</li>
+                            <li><strong>Cold Outreach:</strong> Reaching out to people you don't know</li>
+                            <li><strong>One-to-Many (Unknown):</strong> Running paid advertisements (e.g., on job boards)</li>
+                        </ul>
+                    </div>
+
+                    <p>The pipeline for building a team also resembles the customer pipeline:</p>
+
+                    <ol>
+                        <li><strong>Application Generation:</strong> Attracting candidates using the four methods above</li>
+                        <li><strong>Nurture:</strong> Keeping candidates engaged, recognizing that top candidates find jobs quickly</li>
+                        <li><strong>Sales (Interview):</strong> The interview process is a two-way street; you need to sell top talent on why they should work for you just as much as they sell themselves</li>
+                        <li><strong>Onboarding:</strong> A thorough onboarding process upfront reduces the need for future work and helps new hires become proficient faster</li>
+                        <li><strong>Retention/Ascension:</strong> Keep good talent by providing growth opportunities and a clear career path</li>
+                    </ol>
+
+                    <p>Offering growth is a key factor in retaining employees. Permanent recruiting is often a main job for CEOs.</p>
+                </div>
+            </section>
+
+            <section id="step6" class="step-section">
+                <div class="step-header">
+                    <div class="step-number">6</div>
+                    <h2 class="step-title">Keep Your Advantage</h2>
+                </div>
+                <div class="step-content">
+                    <p>Maintaining your edge in the market is crucial. Alex defines <strong>strategy</strong> simply as the <strong>prioritization of resources</strong>. Keeping your advantage is closely tied to your <strong>brand</strong>, which acts as a virtuous cycle.</p>
+
+                    <p>Brand is built on what you say about yourself, what others (friends) say about you, and the actual experience people have with your product or service. The experience is paramount; good advertising means little if the product is bad. Your brand makes a promise, and while the promise may remain consistent, the <em>way</em> you fulfill that promise must evolve through continuous improvement and innovation.</p>
+
+                    <div class="framework-box">
+                        <div class="framework-title">R&D Prioritization Framework</div>
+                        <ul>
+                            <li><strong>Impact:</strong> How much people are suffering from the problem</li>
+                            <li><strong>Reach:</strong> How many people are suffering from the problem</li>
+                            <li><strong>Confidence:</strong> How likely a potential solution is to solve the problem</li>
+                            <li><strong>Expense:</strong> How much it costs <em>you</em> to implement the solution</li>
+                        </ul>
+                    </div>
+
+                    <div class="value-equation">
+                        <strong>Value = (Dream Outcome × Perceived Likelihood of Achievement) ÷ (Time Delay × Effort & Sacrifice)</strong>
+                    </div>
+
+                    <p>To increase the value of your offering, you must increase the desired <strong>Dream Outcome</strong> and the customer's <strong>Perceived Likelihood of Achievement</strong>, while decreasing the <strong>Time Delay</strong> (how long it takes to get results) and the <strong>Effort & Sacrifice</strong> required from the customer. Top companies often focus heavily on reducing time delay and effort/sacrifice (operational excellence).</p>
+
+                    <p>Blockbuster failed to keep its advantage because Netflix offered less time delay and less sacrifice (no trip to the store, no late fees). Making promises (Dream Outcome/Perceived Likelihood) that are too big without delivering can damage your brand.</p>
+                </div>
+            </section>
+
+            <section id="step7" class="step-section">
+                <div class="step-header">
+                    <div class="step-number">7</div>
+                    <h2 class="step-title">Stick With It</h2>
+                </div>
+                <div class="step-content">
+                    <p>This step is about perseverance, as many of the best gains come from sticking with something for the long haul, appearing only at the very end of the compounding curve. An expert is defined as someone who has made more mistakes than anyone else in a very narrow field.</p>
+
+                    <div class="highlight-box">
+                        <strong>Alex's Core Mantra:</strong> "As long as I don't quit, I win"
+                    </div>
+
+                    <p>Your <strong>reference group</strong> – the people you compare yourself to, not just those you spend time with – significantly impacts your long-term financial well-being. Alex advises taking advice from people closest to your goals, even if they aren't the people closest to you personally. Heroes and mentors (even aspirational ones) can provide guidance.</p>
+
+                    <p>The principle of "doing to be" applies here; consistently performing actions associated with perseverance can make you a persistent person, regardless of how you feel. For Alex, his motivation often stemmed from a deep fear of failure or a perceived deprivation of respect.</p>
+
+                    <div class="framework-box">
+                        <div class="framework-title">The North Star Question</div>
+                        <p><strong>"Does having X in my life increase the chance I hit my goal?"</strong></p>
+                        <p>If not, cutting out X (people, activities) might be necessary. There are trade-offs – achieving significant goals requires sacrificing other things (time, hobbies, certain relationships). You must be willing to name and pay the price.</p>
+                    </div>
+
+                    <p>Viewing business as an <strong>infinite game</strong> where success is measured by simply staying in the game is powerful. Failure only occurs if you choose to stop. Don't let negative comments or external doubts push you to quit. Use what you've got as fuel – while passion is great, sometimes initial motivation comes from less positive emotions like shame or anger. This fuel can change over time, but don't let the wish for a different fuel stop you from starting.</p>
+                </div>
+            </section>
+
+            <section id="step8" class="step-section">
+                <div class="step-header">
+                    <div class="step-number">8</div>
+                    <h2 class="step-title">Getting Better</h2>
+                </div>
+                <div class="step-content">
+                    <p>Improvement is based on action and analysis. Alex defines <strong>Work = Volume × Leverage</strong>, resulting in <strong>Output</strong>. Leverage represents your skill or effectiveness. Doing volume (taking many actions) is necessary to build skill (leverage).</p>
+
+                    <div class="framework-box">
+                        <div class="framework-title">The Improvement Cycle</div>
+                        <ol>
+                            <li><strong>Do volume:</strong> Take a large number of actions (e.g., make 100 sales calls, create 100 social media posts)</li>
+                            <li><strong>Analyze:</strong> Look back at the results and identify what worked best (the top 10%). Use a common factors analysis to determine what characteristics or behaviors were consistent
