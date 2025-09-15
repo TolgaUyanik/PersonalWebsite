@@ -3,188 +3,697 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Musashi's Water Book: Fluidity and Strategy</title>
+    <title>Musashi's Strategic Wisdom: Ancient Principles for Modern Success</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; margin: 20px; }
-        article { max-width: 800px; margin: auto; }
-        h1, h2, h3 { color: #333; }
-        strong { color: #000; }
-        .citation { font-size: 0.9em; color: #555; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 40px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #2c3e50;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 2.2rem;
+            margin: 50px 0 30px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #2c3e50;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .principle {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #2c3e50;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .principle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .principle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.8s;
+        }
+
+        .principle:hover::before {
+            left: 100%;
+        }
+
+        .principle h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .principle-number {
+            background: #2c3e50;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 0.9rem;
+        }
+
+        .principle p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .applications {
+            display: grid;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .application {
+            background: #e8f4f8;
+            color: #2c3e50;
+            padding: 20px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border-left: 3px solid #5a9fd4;
+        }
+
+        .application:nth-child(2) {
+            background: #f0f8ff;
+            border-left-color: #4a90e2;
+        }
+
+        .application:nth-child(3) {
+            background: #f0f9f0;
+            border-left-color: #52c41a;
+        }
+
+        .application:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .application strong {
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .nine-principles {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+        }
+
+        .nine-principles h3 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .principle-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .principle-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        .principle-item strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #2c3e50;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform-origin: left;
+            transform: scaleX(0);
+            z-index: 1000;
+            transition: transform 0.1s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .principle {
+                padding: 20px;
+            }
+            
+            .applications {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+        }
     </style>
 </head>
 <body>
-    <article>
-        <h1>Applying Miyamoto Musashi's Strategic Wisdom to Business, Social Life, and Personal Struggles</h1>
-        <p>Miyamoto Musashi (c.1584–1645), a legendary Japanese samurai and master swordsman, is widely known for founding the Hyōhō Niten Ichi-ryū or Niten-ryū style of swordsmanship. He is also the revered author of "The Book of Five Rings," a profound text on strategy, tactics, and philosophy that continues to be studied extensively today. Musashi began his journey inclined towards the Way of Strategy from his youth, engaging in numerous duels from the age of thirteen and winning sixty encounters by the time he was twenty-eight or twenty-nine. However, he realized his early victories were not due to mastered strategy, but perhaps natural ability or the inferiority of other schools. It was only when he was fifty that he truly came to realize the Way of Strategy after continuous study.</p>
-        <p>Musashi's principles, particularly those articulated in "The Fire Book," extend far beyond the battlefield, offering deep insights applicable to the realms of business, social interactions, and personal challenges. His philosophy posits that the path of strategy is a "sure method to win when fighting for your life one man against five or ten" and that "one man can beat ten, so a thousand men can beat ten thousand". This implies the scalability and universality of his strategic insights.</p>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
+    <div class="container">
+        <div class="hero">
+            <h1>Musashi's Strategic Wisdom</h1>
+            <p>Ancient Principles for Modern Success in Business, Social Life, and Personal Growth</p>
+        </div>
 
-        <h2>Key Principles from Musashi's Strategy and Their Modern Applications:</h2>
+        <div class="content">
+            <div class="intro">
+                <p>Miyamoto Musashi (c.1584–1645), a legendary Japanese samurai and master swordsman, is widely known for founding the Hyōhō Niten Ichi-ryū or Niten-ryū style of swordsmanship. He is also the revered author of "The Book of Five Rings," a profound text on strategy, tactics, and philosophy that continues to be studied extensively today.</p>
+                
+                <p>Musashi began his journey inclined towards the Way of Strategy from his youth, engaging in numerous duels from the age of thirteen and winning sixty encounters by the time he was twenty-eight or twenty-nine. However, he realized his early victories were not due to mastered strategy, but perhaps natural ability or the inferiority of other schools. It was only when he was fifty that he truly came to realize the Way of Strategy after continuous study.</p>
+                
+                <p>His principles extend far beyond the battlefield, offering deep insights applicable to the realms of business, social interactions, and personal challenges. His philosophy posits that the path of strategy is a "sure method to win when fighting for your life one man against five or ten" and that "one man can beat ten, so a thousand men can beat ten thousand". This implies the scalability and universality of his strategic insights.</p>
+            </div>
 
-        <h3>1. Understanding Timing in Strategy</h3>
-        <p>Musashi emphasizes that there is **timing in everything** – from dancing and music to military arts, and even in the "rise and fall of capital" in the Way of the merchant. Mastering timing in strategy requires extensive practice. For Musashi, victory in battles is achieved by "knowing the enemies' timing, and thus using a timing which the enemy does not expect".</p>
-        <ul>
-            <li><strong>In Business:</strong> This translates to understanding market trends, competitor moves, and product launch cycles. Releasing a product or service at the opportune moment, or launching a marketing campaign when the market is most receptive, can be decisive.</li>
-            <li><strong>In Social Life:</strong> It means knowing when to speak, when to listen, when to offer help, or when to address a conflict. Acting at the right moment can strengthen relationships or resolve disputes.</li>
-            <li><strong>In Struggles:</strong> Recognizing the exact moment to push forward, pivot, or retreat when facing a personal challenge is crucial. Striking when an obstacle is weakest or when you are strongest can lead to overcoming it.</li>
-        </ul>
+            <h2>Key Principles from Musashi's Strategy</h2>
 
-        <h3>2. Continuous Training and Development</h3>
-        <p>Musashi stresses the necessity of "morning and evening researching and training" to become a master of strategy, enabling one to "polish his skill, become free from self, and realize extraordinary ability". This commitment to lifelong learning leads to "miraculous power". The Way of Strategy is found "in training".</p>
-        <ul>
-            <li><strong>In Business:</strong> Fosters a culture of **continuous learning, professional development, and skill enhancement**. Companies and individuals that constantly adapt and upgrade their capabilities remain competitive.</li>
-            <li><strong>In Social Life:</strong> Encourages **self-improvement** in communication, empathy, and emotional intelligence. Constantly learning from social interactions leads to better relationships.</li>
-            <li><strong>In Struggles:</strong> Emphasizes **resilience and adaptability**. Every challenge is an opportunity to learn and grow, enhancing one's ability to face future difficulties.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">1</span>Understanding Timing in Strategy</h3>
+                <p>Musashi emphasizes that there is <strong>timing in everything</strong> – from dancing and music to military arts, and even in the "rise and fall of capital" in the Way of the merchant. Mastering timing in strategy requires extensive practice. For Musashi, victory in battles is achieved by "knowing the enemies' timing, and thus using a timing which the enemy does not expect".</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> This translates to understanding market trends, competitor moves, and product launch cycles. Releasing a product or service at the opportune moment, or launching a marketing campaign when the market is most receptive, can be decisive.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> It means knowing when to speak, when to listen, when to offer help, or when to address a conflict. Acting at the right moment can strengthen relationships or resolve disputes.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Recognizing the exact moment to push forward, pivot, or retreat when facing a personal challenge is crucial. Striking when an obstacle is weakest or when you are strongest can lead to overcoming it.
+                    </div>
+                </div>
+            </div>
 
-        <h3>3. Evaluating the Environment and Positioning ("Depending on the Place")</h3>
-        <p>Musashi advises positioning oneself strategically, such as taking an attitude with the sun behind you or keeping an entrance to your rear in a building. The goal is to "look down on the enemy, and take up your attitude on slightly higher places" and "chase the enemy into awkward places".</p>
-        <ul>
-            <li><strong>In Business:</strong> Means thoroughly understanding the **market landscape, competitive environment, and internal capabilities**. This includes identifying niche markets, leveraging geographical advantages, or optimizing physical and digital presences.</li>
-            <li><strong>In Social Life:</strong> Being aware of the social dynamics, context, and environment. Choosing the right setting for a conversation or knowing when and where to address a sensitive topic can influence the outcome.</li>
-            <li><strong>In Struggles:</strong> Assessing the surrounding circumstances of a problem. Positioning yourself where you have the most resources or leverage, and putting the problem in a less favorable "spot."</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">2</span>Continuous Training and Development</h3>
+                <p>Musashi stresses the necessity of "morning and evening researching and training" to become a master of strategy, enabling one to "polish his skill, become free from self, and realize extraordinary ability". This commitment to lifelong learning leads to "miraculous power". The Way of Strategy is found "in training".</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Fosters a culture of continuous learning, professional development, and skill enhancement. Companies and individuals that constantly adapt and upgrade their capabilities remain competitive.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Encourages self-improvement in communication, empathy, and emotional intelligence. Constantly learning from social interactions leads to better relationships.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Emphasizes resilience and adaptability. Every challenge is an opportunity to learn and grow, enhancing one's ability to face future difficulties.
+                    </div>
+                </div>
+            </div>
 
-        <h3>4. Taking Initiative ("The Three Methods to Forestall the Enemy")</h3>
-        <p>Musashi highlights three critical methods for taking the lead, stating that "you can win quickly by taking the lead":</p>
-        <ul>
-            <li><strong>Ken No Sen (To Set Him Up):</strong> Attacking quickly and calmly, or advancing with a strong spirit to overwhelm the enemy from the outset.
-                <ul>
-                    <li><strong>Application:</strong> Being a **first-mover** in business, proactively addressing issues, or taking the lead in a group project.</li>
-                </ul>
-            </li>
-            <li><strong>Tai No Sen (To Wait for the Initiative):</strong> Feigning weakness or remaining undisturbed when the enemy attacks, then striking strongly as soon as they relax or become disordered.
-                <ul>
-                    <li><strong>Application:</strong> In business, observing competitors' moves and **responding with a stronger, more informed counter-strategy**. In social dynamics, allowing others to reveal their hand before making your move.</li>
-                </ul>
-            </li>
-            <li><strong>Tai Tai No Sen (To Accompany Him and Forestall Him):</strong> Attacking strongly and calmly when both sides attack together, aiming for the enemy's weak point.
-                <ul>
-                    <li><strong>Application:</strong> In negotiations or competitive scenarios, **matching the opponent's intensity while simultaneously identifying and exploiting their weaknesses**.</li>
-                </ul>
-            </li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">3</span>Evaluating the Environment and Positioning</h3>
+                <p>Musashi advises positioning oneself strategically, such as taking an attitude with the sun behind you or keeping an entrance to your rear in a building. The goal is to "look down on the enemy, and take up your attitude on slightly higher places" and "chase the enemy into awkward places".</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Means thoroughly understanding the market landscape, competitive environment, and internal capabilities. This includes identifying niche markets, leveraging geographical advantages, or optimizing physical and digital presences.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Being aware of the social dynamics, context, and environment. Choosing the right setting for a conversation or knowing when and where to address a sensitive topic can influence the outcome.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Assessing the surrounding circumstances of a problem. Positioning yourself where you have the most resources or leverage, and putting the problem in a less favorable "spot."
+                    </div>
+                </div>
+            </div>
 
-        <h3>5. Leading by Hindering ("To Hold Down a Pillow")</h3>
-        <p>This principle means "not allowing the enemy's head to rise". It's about suppressing the enemy's useful actions and foiling their plans before they can fully manifest.</p>
-        <ul>
-            <li><strong>In Business:</strong> Proactively **identifying and mitigating risks**, anticipating competitor strategies, and neutralizing potential threats before they gain momentum. It also relates to controlling the narrative or market direction.</li>
-            <li><strong>In Social Life:</strong> Preventing misunderstandings from escalating, addressing negative gossip before it spreads, or defusing tension in a group.</li>
-            <li><strong>In Struggles:</strong> Stopping negative habits or thoughts from taking root, or preventing minor problems from growing into major crises.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">4</span>Taking Initiative - The Three Methods</h3>
+                <p>Musashi highlights three critical methods for taking the lead, stating that "you can win quickly by taking the lead":</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>Ken No Sen (To Set Him Up):</strong> Attacking quickly and calmly, or advancing with a strong spirit to overwhelm the enemy from the outset. Application: Being a first-mover in business, proactively addressing issues, or taking the lead in a group project.
+                    </div>
+                    <div class="application">
+                        <strong>Tai No Sen (To Wait for Initiative):</strong> Feigning weakness or remaining undisturbed when the enemy attacks, then striking strongly as soon as they relax or become disordered. Application: Observing competitors' moves and responding with a stronger, more informed counter-strategy.
+                    </div>
+                    <div class="application">
+                        <strong>Tai Tai No Sen (To Accompany and Forestall):</strong> Attacking strongly and calmly when both sides attack together, aiming for the enemy's weak point. Application: Matching the opponent's intensity while simultaneously identifying and exploiting their weaknesses.
+                    </div>
+                </div>
+            </div>
 
-        <h3>6. Strategic Positioning ("Crossing at a Ford")</h3>
-        <p>Like a good captain discerning the best route across a sea, this means understanding the enemy's capabilities and your own strengths to attack at an advantageous point. It is about attacking the enemy's weak point and putting yourself in a dominant position.</p>
-        <ul>
-            <li><strong>In Business:</strong> **Identifying competitive advantages**, exploiting gaps in the market, or choosing the most effective distribution channels.</li>
-            <li><strong>In Social Life:</strong> Approaching sensitive topics from a position of mutual trust or choosing the right time and place to address a conflict to maximize positive outcomes.</li>
-            <li><strong>In Struggles:</strong> Focusing efforts on the most vulnerable aspects of a problem or leveraging your core strengths to overcome a challenge.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">5</span>Leading by Hindering - "To Hold Down a Pillow"</h3>
+                <p>This principle means "not allowing the enemy's head to rise". It's about suppressing the enemy's useful actions and foiling their plans before they can fully manifest.</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Proactively identifying and mitigating risks, anticipating competitor strategies, and neutralizing potential threats before they gain momentum. It also relates to controlling the narrative or market direction.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Preventing misunderstandings from escalating, addressing negative gossip before it spreads, or defusing tension in a group.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Stopping negative habits or thoughts from taking root, or preventing minor problems from growing into major crises.
+                    </div>
+                </div>
+            </div>
 
-        <h3>7. Knowing "Collapse"</h3>
-        <p>Musashi states that "everything can collapse" when its rhythm is deranged, and when the enemy begins to collapse, you must pursue relentlessly without allowing them to recover.</p>
-        <ul>
-            <li><strong>In Business:</strong> Recognizing when a competitor is vulnerable (e.g., during a PR crisis, product failure, or leadership change) and **capitalizing on the opportunity to gain market share**.</li>
-            <li><strong>In Social Life:</strong> Understanding when a bad situation or argument has reached a point of no return, and knowing when to either withdraw definitively or push for a complete resolution.</li>
-            <li><strong>In Struggles:</strong> Identifying the breaking point of a challenge or negative pattern and striking with full force to ensure it doesn't resurface.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">6</span>Strategic Positioning - "Crossing at a Ford"</h3>
+                <p>Like a good captain discerning the best route across a sea, this means understanding the enemy's capabilities and your own strengths to attack at an advantageous point. It is about attacking the enemy's weak point and putting yourself in a dominant position.</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Identifying competitive advantages, exploiting gaps in the market, or choosing the most effective distribution channels.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Approaching sensitive topics from a position of mutual trust or choosing the right time and place to address a conflict to maximize positive outcomes.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Focusing efforts on the most vulnerable aspects of a problem or leveraging your core strengths to overcome a challenge.
+                    </div>
+                </div>
+            </div>
 
-        <h3>8. To Become the Enemy</h3>
-        <p>This principle encourages you to "think yourself in the enemy's position". It means understanding their perspective, motivations, and perceived strengths and weaknesses.</p>
-        <ul>
-            <li><strong>In Business:</strong> Crucial for **customer empathy and competitive analysis**. By understanding your customers' needs and your competitors' strategies, you can better tailor your own approach.</li>
-            <li><strong>In Social Life:</strong> Fosters **empathy and conflict resolution**. By understanding another person's viewpoint, even if you disagree, you can communicate more effectively and build stronger relationships.</li>
-            <li><strong>In Struggles:</strong> Helps in problem-solving by viewing the problem from multiple angles. Understanding why a struggle persists or what perpetuates it can reveal pathways to overcome it.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">7</span>Knowing "Collapse"</h3>
+                <p>Musashi states that "everything can collapse" when its rhythm is deranged, and when the enemy begins to collapse, you must pursue relentlessly without allowing them to recover.</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Recognizing when a competitor is vulnerable (e.g., during a PR crisis, product failure, or leadership change) and capitalizing on the opportunity to gain market share.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Understanding when a bad situation or argument has reached a point of no return, and knowing when to either withdraw definitively or push for a complete resolution.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Identifying the breaking point of a challenge or negative pattern and striking with full force to ensure it doesn't resurface.
+                    </div>
+                </div>
+            </div>
 
-        <h3>9. To Release Four Hands</h3>
-        <p>When in a stalemate where the issue cannot be decided, Musashi advises abandoning the current spirit and winning through an "alternative resource" or an "unexpected technique".</p>
-        <ul>
-            <li><strong>In Business:</strong> Encourages **innovation and adaptability**. When traditional methods fail, a creative pivot, a new business model, or an unexpected product feature can break a deadlock.</li>
-            <li><strong>In Social Life:</strong> Finding alternative ways to resolve a conflict or approach a difficult conversation when direct methods are unproductive.</li>
-            <li><strong>In Struggles:</strong> Not being rigid in your approach to challenges. If one method isn't working, be open to entirely different, out-of-the-box solutions.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">8</span>To Become the Enemy</h3>
+                <p>This principle encourages you to "think yourself in the enemy's position". It means understanding their perspective, motivations, and perceived strengths and weaknesses.</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Crucial for customer empathy and competitive analysis. By understanding your customers' needs and your competitors' strategies, you can better tailor your own approach.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Fosters empathy and conflict resolution. By understanding another person's viewpoint, even if you disagree, you can communicate more effectively and build stronger relationships.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Helps in problem-solving by viewing the problem from multiple angles. Understanding why a struggle persists or what perpetuates it can reveal pathways to overcome it.
+                    </div>
+                </div>
+            </div>
 
-        <h3>10. To Move the Shade</h3>
-        <p>When the enemy's intentions are hidden, make a feint attack or a strong indication of attack to force them to reveal their resources or intentions.</p>
-        <ul>
-            <li><strong>In Business:</strong> **Testing the market** with pilot programs or surveys, or making strategic announcements to gauge competitor reactions and gather intelligence.</li>
-            <li><strong>In Social Life:</strong> Gently probing to understand someone's hidden feelings or intentions without direct confrontation.</li>
-            <li><strong>In Struggles:</strong> Taking small, calculated risks to understand the scope or resistance of a problem before committing full resources.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">9</span>To Release Four Hands</h3>
+                <p>When in a stalemate where the issue cannot be decided, Musashi advises abandoning the current spirit and winning through an "alternative resource" or an "unexpected technique".</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Encourages innovation and adaptability. When traditional methods fail, a creative pivot, a new business model, or an unexpected product feature can break a deadlock.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Finding alternative ways to resolve a conflict or approach a difficult conversation when direct methods are unproductive.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Not being rigid in your approach to challenges. If one method isn't working, be open to entirely different, out-of-the-box solutions.
+                    </div>
+                </div>
+            </div>
 
-        <h3>11. The "Mountain-Sea Change"</h3>
-        <p>Musashi advises against repeating a failed approach multiple times. If an attack fails, change your method: "If the enemy thinks of the mountains, attack like the sea; and if he thinks of the sea, attack like the mountains".</p>
-        <ul>
-            <li><strong>In Business:</strong> Emphasizes **strategic flexibility**. If a product isn't selling, don't just push harder; reconsider the marketing, pricing, or even the product itself.</li>
-            <li><strong>In Social Life:</strong> If one communication style isn't working in a relationship, try a completely different approach.</li>
-            <li><strong>In Struggles:</strong> If a certain problem-solving technique isn't effective, be prepared to completely change your strategy, perhaps approaching it from an entirely different angle or with different resources.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">10</span>To Move the Shade</h3>
+                <p>When the enemy's intentions are hidden, make a feint attack or a strong indication of attack to force them to reveal their resources or intentions.</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Testing the market with pilot programs or surveys, or making strategic announcements to gauge competitor reactions and gather intelligence.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Gently probing to understand someone's hidden feelings or intentions without direct confrontation.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Taking small, calculated risks to understand the scope or resistance of a problem before committing full resources.
+                    </div>
+                </div>
+            </div>
 
-        <h3>12. To Penetrate the Depths</h3>
-        <p>Beyond superficial victory, it means destroying the enemy's spirit deeply, demoralizing them by quickly changing your own spirit.</p>
-        <ul>
-            <li><strong>In Business:</strong> Going beyond superficial successes to **address core organizational weaknesses or market fundamental shifts**. It's about achieving a decisive and lasting competitive advantage.</li>
-            <li><strong>In Social Life:</strong> Addressing the root causes of conflict or misunderstanding, rather than just the symptoms. Building deep, meaningful connections.</li>
-            <li><strong>In Struggles:</strong> Not just alleviating symptoms but fundamentally changing the underlying conditions that perpetuate a struggle, leading to genuine and lasting resolution.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">11</span>The "Mountain-Sea Change"</h3>
+                <p>Musashi advises against repeating a failed approach multiple times. If an attack fails, change your method: "If the enemy thinks of the mountains, attack like the sea; and if he thinks of the sea, attack like the mountains".</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Emphasizes strategic flexibility. If a product isn't selling, don't just push harder; reconsider the marketing, pricing, or even the product itself.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> If one communication style isn't working in a relationship, try a completely different approach.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> If a certain problem-solving technique isn't effective, be prepared to completely change your strategy, perhaps approaching it from an entirely different angle or with different resources.
+                    </div>
+                </div>
+            </div>
 
-        <h3>13. To Renew</h3>
-        <p>When deadlocked, Musashi suggests abandoning current efforts, thinking of the situation with a "fresh spirit," and winning in a new rhythm or with a different technique.</p>
-        <ul>
-            <li><strong>In Business:</strong> **Pivoting**, rebranding, or launching a completely new initiative when an existing one faces insurmountable obstacles. It’s about not being tied to sunk costs or past strategies.</li>
-            <li><strong>In Social Life:</strong> Approaching a strained relationship or an unresolved issue with a fresh perspective, letting go of past grievances to find a new path forward.</li>
-            <li><strong>In Struggles:</strong> When feeling stuck, taking a break, gaining new insights, or trying a completely different mindset to break free from a cycle of struggle.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">12</span>To Penetrate the Depths</h3>
+                <p>Beyond superficial victory, it means destroying the enemy's spirit deeply, demoralizing them by quickly changing your own spirit.</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Going beyond superficial successes to address core organizational weaknesses or market fundamental shifts. It's about achieving a decisive and lasting competitive advantage.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Addressing the root causes of conflict or misunderstanding, rather than just the symptoms. Building deep, meaningful connections.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Not just alleviating symptoms but fundamentally changing the underlying conditions that perpetuate a struggle, leading to genuine and lasting resolution.
+                    </div>
+                </div>
+            </div>
 
-        <h3>14. "Rat's Head, Ox's Neck"</h3>
-        <p>This principle advises against getting preoccupied with small details when entangled. Instead, one must suddenly shift to a "large spirit," interchanging large with small, to view the broader Way of Strategy.</p>
-        <ul>
-            <li><strong>In Business:</strong> Balancing **strategic vision with tactical execution**. Not getting bogged down in minor operational details while losing sight of the overall business goals.</li>
-            <li><strong>In Social Life:</strong> Not letting minor annoyances or disagreements overshadow the larger relationship or common goals.</li>
-            <li><strong>In Struggles:</strong> Focusing on the most impactful solutions rather than getting lost in minor, less significant aspects of a problem.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">13</span>To Renew</h3>
+                <p>When deadlocked, Musashi suggests abandoning current efforts, thinking of the situation with a "fresh spirit," and winning in a new rhythm or with a different technique.</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Pivoting, rebranding, or launching a completely new initiative when an existing one faces insurmountable obstacles. It's about not being tied to sunk costs or past strategies.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Approaching a strained relationship or an unresolved issue with a fresh perspective, letting go of past grievances to find a new path forward.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> When feeling stuck, taking a break, gaining new insights, or trying a completely different mindset to break free from a cycle of struggle.
+                    </div>
+                </div>
+            </div>
 
-        <h3>15. The Commander Knows the Troops</h3>
-        <p>Musashi suggests thinking of the enemy as your own troops, which allows you to "move him at will and be able to chase him around".</p>
-        <ul>
-            <li><strong>In Business:</strong> **Effective leadership and stakeholder management**. Understanding your team, partners, and even competitors deeply to anticipate their actions and influence outcomes.</li>
-            <li><strong>In Social Life:</strong> Understanding the motivations and needs of others in order to guide interactions or collaborations effectively.</li>
-            <li><strong>In Struggles:</strong> Knowing the nature of the challenge so intimately that you can anticipate its moves and counter them effectively.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">14</span>"Rat's Head, Ox's Neck"</h3>
+                <p>This principle advises against getting preoccupied with small details when entangled. Instead, one must suddenly shift to a "large spirit," interchanging large with small, to view the broader Way of Strategy.</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Balancing strategic vision with tactical execution. Not getting bogged down in minor operational details while losing sight of the overall business goals.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Not letting minor annoyances or disagreements overshadow the larger relationship or common goals.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Focusing on the most impactful solutions rather than getting lost in minor, less significant aspects of a problem.
+                    </div>
+                </div>
+            </div>
 
-        <h3>16. To Let Go the Hilt</h3>
-        <p>This principle speaks to winning "without a sword" or even while holding it but not winning through direct force, implying a spiritual or mental victory where physical conflict is unnecessary.</p>
-        <ul>
-            <li><strong>In Business:</strong> Achieving dominance through **reputation, thought leadership, or market influence** rather than direct, cutthroat competition. Winning without needing to 'fight'.</li>
-            <li><strong>In Social Life:</strong> Resolving conflicts through persuasion, wisdom, or de-escalation, avoiding direct confrontation.</li>
-            <li><strong>In Struggles:</strong> Achieving peace or resolution through inner strength and wisdom, rather than constantly battling external circumstances.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">15</span>The Commander Knows the Troops</h3>
+                <p>Musashi suggests thinking of the enemy as your own troops, which allows you to "move him at will and be able to chase him around".</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Effective leadership and stakeholder management. Understanding your team, partners, and even competitors deeply to anticipate their actions and influence outcomes.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Understanding the motivations and needs of others in order to guide interactions or collaborations effectively.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Knowing the nature of the challenge so intimately that you can anticipate its moves and counter them effectively.
+                    </div>
+                </div>
+            </div>
 
-        <h3>17. The Body of a Rock</h3>
-        <p>When the Way of Strategy is mastered, one's body and spirit can become "like a rock," unmovable by "ten thousand things".</p>
-        <ul>
-            <li><strong>In Business:</strong> Cultivating **unwavering resolve and resilience** in the face of market volatility or business challenges.</li>
-            <li><strong>In Social Life:</strong> Maintaining your integrity and core values despite external pressures or criticism.</li>
-            <li><strong>In Struggles:</strong> Developing **inner strength and mental fortitude** to remain calm and focused amidst adversity.</li>
-        </ul>
+            <div class="principle">
+                <h3><span class="principle-number">16</span>To Let Go the Hilt</h3>
+                <p>This principle speaks to winning "without a sword" or even while holding it but not winning through direct force, implying a spiritual or mental victory where physical conflict is unnecessary.</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Achieving dominance through reputation, thought leadership, or market influence rather than direct, cutthroat competition. Winning without needing to 'fight'.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Resolving conflicts through persuasion, wisdom, or de-escalation, avoiding direct confrontation.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Achieving peace or resolution through inner strength and wisdom, rather than constantly battling external circumstances.
+                    </div>
+                </div>
+            </div>
 
-        <h3>18. The Nine Principles</h3>
-        <p>Musashi provides nine guiding principles for the warrior's life:</p>
-        <ol>
-            <li>Do not think dishonestly.</li>
-            <li>The Way is in training.</li>
-            <li>Become acquainted with every art.</li>
-            <li>Know the Ways of all professions.</li>
-            <li>Distinguish between gain and loss in worldly matters.</li>
-            <li>Develop intuitive judgement and understanding for everything.</li>
-            <li>Perceive those things which cannot be seen.</li>
-            <li>Pay attention even to trifles.</li>
-            <li>Do nothing which is of no use.</li>
-        </ol>
-        <p>These principles serve as a universal guide for ethical conduct, personal growth, effective problem-solving, and efficiency in all aspects of life. The emphasis on "doing nothing which is of no use" is particularly relevant for modern productivity and focus.</p>
+            <div class="principle">
+                <h3><span class="principle-number">17</span>The Body of a Rock</h3>
+                <p>When the Way of Strategy is mastered, one's body and spirit can become "like a rock," unmovable by "ten thousand things".</p>
+                <div class="applications">
+                    <div class="application">
+                        <strong>In Business:</strong> Cultivating unwavering resolve and resilience in the face of market volatility or business challenges.
+                    </div>
+                    <div class="application">
+                        <strong>In Social Life:</strong> Maintaining your integrity and core values despite external pressures or criticism.
+                    </div>
+                    <div class="application">
+                        <strong>In Struggles:</strong> Developing inner strength and mental fortitude to remain calm and focused amidst adversity.
+                    </div>
+                </div>
+            </div>
 
-        <p>In conclusion, Musashi's "The Book of Five Rings" offers a timeless framework for navigating complexities. Its core tenets — deep understanding of the situation, adaptability, psychological superiority, and relentless self-improvement — remain profoundly relevant for achieving success and finding balance in the modern world of business, social interactions, and personal development.</p>
-    </article>
+            <div class="nine-principles">
+                <h3>The Nine Principles</h3>
+                <p style="text-align: center; margin-bottom: 30px; opacity: 0.9;">Musashi's guiding principles for the warrior's life:</p>
+                <div class="principles-grid">
+                    <div class="principle-item">
+                        <strong>1. Do not think dishonestly.</strong>
+                        Maintain integrity in all thoughts and actions.
+                    </div>
+                    <div class="principle-item">
+                        <strong>2. The Way is in training.</strong>
+                        Continuous practice and learning are essential.
+                    </div>
+                    <div class="principle-item">
+                        <strong>3. Become acquainted with every art.</strong>
+                        Broaden your knowledge and skills across disciplines.
+                    </div>
+                    <div class="principle-item">
+                        <strong>4. Know the Ways of all professions.</strong>
+                        Understand different fields and their methods.
+                    </div>
+                    <div class="principle-item">
+                        <strong>5. Distinguish between gain and loss.</strong>
+                        Develop clear judgment about worldly matters.
+                    </div>
+                    <div class="principle-item">
+                        <strong>6. Develop intuitive judgement.</strong>
+                        Cultivate understanding for everything around you.
+                    </div>
+                    <div class="principle-item">
+                        <strong>7. Perceive the unseen.</strong>
+                        Look beyond the obvious to hidden truths.
+                    </div>
+                    <div class="principle-item">
+                        <strong>8. Pay attention to trifles.</strong>
+                        Small details often matter greatly.
+                    </div>
+                    <div class="principle-item">
+                        <strong>9. Do nothing which is of no use.</strong>
+                        Focus only on what serves a purpose.
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 30px; opacity: 0.9;">These principles serve as a universal guide for ethical conduct, personal growth, effective problem-solving, and efficiency in all aspects of life.</p>
+            </div>
+
+            <div class="conclusion">
+                <h2 style="color: #2c3e50; margin-bottom: 30px;">Timeless Wisdom for Modern Success</h2>
+                <p>Musashi's "The Book of Five Rings" offers a timeless framework for navigating complexities in our modern world. Its core tenets — deep understanding of the situation, adaptability, psychological superiority, and relentless self-improvement — remain profoundly relevant for achieving success and finding balance in business, social interactions, and personal development.</p>
+                
+                <p style="margin-top: 25px; font-style: italic;">The way of strategy is not merely about winning battles, but about mastering oneself and one's environment through wisdom, preparation, and unwavering dedication to continuous growth.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollIndicator').style.transform = `scaleX(${scrollPercentage / 100})`;
+        });
+
+        // Smooth reveal animation for principles
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Apply animation to principles
+        document.querySelectorAll('.principle').forEach(principle => {
+            principle.style.opacity = '0';
+            principle.style.transform = 'translateY(20px)';
+            principle.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(principle);
+        });
+
+        // Add parallax effect to hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
 </body>
 </html>
-```
