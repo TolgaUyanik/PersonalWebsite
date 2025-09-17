@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Samurai's Code: Building an Unbreakable Business Culture</title>
+    <meta name="description" content="Learn how the seven virtues of Bushido can provide a timeless framework for building a resilient, honorable, and successful modern business culture.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        :root {
+            --primary-color: #b71c1c; /* Deep Red */
+            --secondary-color: #2c3e50; /* Dark Slate Blue */
+            --accent-color: #f39c12; /* Gold/Orange */
+            --text-primary: #212121; /* Near Black */
+            --text-secondary: #757575; /* Gray */
+            --background: #ffffff;
+            --surface: #f5f5f5; /* Light Gray */
+            --border: #e0e0e0;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            color: var(--text-primary);
+            background: var(--surface);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(assets/img/Digital_reunesans_2.jpg);
+            background-size: cover;
+            background-position: center;
+            color: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        main {
+            background: var(--background);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 70px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 2rem 0 1rem 0;
+        }
+
+        p { margin-bottom: 1.5rem; }
+
+        /* Custom Block Elements */
+        .intro-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .virtue-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .virtue-card h3 { margin-top: 0; }
+        .virtue-card h3 span { font-style: italic; color: var(--text-secondary); font-weight: 400; margin-left: 0.5rem; }
+
+        .actionable-section {
+            background: linear-gradient(135deg, #f5f7fa, #e8ebf0);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            border: 1px solid var(--border);
+        }
+        
+        .actionable-section h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1.5rem;
+            margin: 2rem auto;
+            max-width: 80%;
+            text-align: center;
+        }
+
+        /* Lists */
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.75rem;
+        }
+        li::before {
+            content: '»';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>The Samurai's Code</h1>
+            <p class="subtitle">Building an Unbreakable Business Culture with Bushido</p>
+        </header>
+
+        <main>
+            <section id="introduction">
+                <div class="intro-text">
+                    In a world obsessed with short-term gains and disruptive innovation, the concept of an ancient warrior code might seem out of place. Yet, the principles of Bushido—the Way of the Samurai—offer a timeless and powerful framework for building a business culture that is resilient, honorable, and profoundly effective.
+                </div>
+                <p>Culture isn't just a mission statement on a wall; it's the invisible shield that protects a company in a crisis and the sharp edge that gives it a competitive advantage. Let's explore the seven virtues of Bushido and see how they can be translated into an actionable blueprint for modern leadership.</p>
+            </section>
+
+            <section id="virtues">
+                <h2>The Seven Virtues of Bushido in Business</h2>
+
+                <div class="virtue-card">
+                    <h3>義 (Gi) <span>Justice & Integrity</span></h3>
+                    <p><strong>In Business:</strong> This is the unwavering commitment to doing the right thing, even when it's hard. It means transparent dealings with customers, ethical treatment of employees, and owning up to mistakes. A company with 'Gi' doesn't look for loopholes; it sets the standard.</p>
+                </div>
+
+                <div class="virtue-card">
+                    <h3>勇 (Yū) <span>Courage</span></h3>
+                    <p><strong>In Business:</strong> Courage isn't the absence of fear; it's the willingness to take calculated risks for a greater vision. It's the courage to innovate, to have difficult conversations, to pivot when necessary, and to stand by your principles under pressure.</p>
+                </div>
+
+                <div class="virtue-card">
+                    <h3>仁 (Jin) <span>Compassion</span></h3>
+                    <p><strong>In Business:</strong> Compassion is the foundation of exceptional customer service and strong team morale. It's about understanding the needs of your clients and colleagues, leading with empathy, and creating an environment where people feel valued and supported.</p>
+                </div>
+
+                <div class="virtue-card">
+                    <h3>礼 (Rei) <span>Respect</span></h3>
+                    <p><strong>In Business:</strong> True respect goes beyond simple politeness. It's about valuing diverse opinions, honoring commitments, and treating everyone—from the intern to the CEO to the customer—with dignity. A respectful culture fosters collaboration and psychological safety.</p>
+                </div>
+
+                <div class="virtue-card">
+                    <h3>誠 (Makoto) <span>Honesty & Sincerity</span></h3>
+                    <p><strong>In Business:</strong> Makoto means your words and actions are aligned. In business, this translates to authentic marketing, sincere leadership, and a product that delivers on its promises. Trust is built on a foundation of honesty.</p>
+                </div>
+
+                <div class="virtue-card">
+                    <h3>名誉 (Meiyo) <span>Honor</span></h3>
+                    <p><strong>In Business:</strong> Honor is tied to personal and professional reputation. It's the intrinsic drive to uphold high standards, take pride in your work, and be accountable for the quality of your output. An honorable company is one whose name is synonymous with excellence.</p>
+                </div>
+
+                <div class="virtue-card">
+                    <h3>忠義 (Chūgi) <span>Loyalty</span></h3>
+                    <p><strong>In Business:</strong> Loyalty is a two-way street. A company must be loyal to its mission, its customers, and its people. In return, it earns the fierce loyalty of a team that is dedicated to the company's success, not out of obligation, but out of a shared sense of purpose.</p>
+                </div>
+            </section>
+            
+            <div class="actionable-section">
+                <h2>From Virtue to Practice: Operationalizing Your Culture</h2>
+                <p>Values are meaningless unless they are embedded in your daily operations. Here’s how to turn these abstract virtues into concrete processes.</p>
+                
+                <h3>Hiring for Culture</h3>
+                <p>Instead of just asking about skills, design interview questions that reveal character. To test for <strong>Makoto (Honesty)</strong>, ask:</p>
+                <p class="quote">"Tell me about a time you had to deliver bad news to a team or a client. What did you say, and what was the result?"</p>
+                <p>The answer will reveal their commitment to truth over comfort.</p>
+
+                <h3>Performance Reviews</h3>
+                <p>Measure what matters. Your review system should evaluate people on both performance and their embodiment of the virtues. A peer review could include:</p>
+                <ul>
+                    <li>"On a scale of 1-5, how did this person demonstrate <strong>Rei (Respect)</strong> in meetings this quarter?"</li>
+                    <li>"Provide an example of when this person showed <strong>Yū (Courage)</strong> by tackling a difficult problem."</li>
+                </ul>
+
+                <h3>The Culture Charter</h3>
+                <p>Empower your team to define what each virtue looks like in their roles. A developer’s definition of <strong>Meiyo (Honor)</strong> might be "writing clean, well-documented code and taking full ownership of bugs." This collaborative document turns abstract ideals into a shared, practical guide.</p>
+            </div>
+
+            <div class="actionable-section">
+                <h2>The Role of Rituals and Symbols</h2>
+                <p>Culture thrives on consistent reinforcement. Rituals and symbols make your values visible and tangible.</p>
+
+                <h3>Honoring the Virtues</h3>
+                <p>Create simple, public rituals to recognize team members who embody a virtue. A weekly "Courageous Action" award for someone who took a brave stand reinforces that these principles are not just words on a wall, but living actions.</p>
+                
+                <h3>Storytelling</h3>
+                <p>Stories are the lifeblood of culture. Actively collect and share narratives of team members demonstrating the virtues. A story about a time someone with <strong>Jin (Compassion)</strong> went above and beyond for a customer makes the value unforgettable and inspires others to follow suit.</p>
+            </div>
+
+            <div class="actionable-section">
+                <h2>The Ultimate Test: Navigating Crisis</h2>
+                <p>A company's true character is revealed not in good times, but in moments of crisis. Your culture is tested when:</p>
+                <ul>
+                    <li>A major product launch fails.</li>
+                    <li>You have to conduct layoffs.</li>
+                    <li>You are faced with a difficult ethical dilemma.</li>
+                </ul>
+                <p>In these moments, a culture built on <strong>Gi (Integrity)</strong> and <strong>Makoto (Honesty)</strong> will not resort to blame, lies, or shortcuts. The virtues become an unbreakable shield, protecting both the company's reputation and its people's morale. This is where a Bushido-inspired culture proves its ultimate worth.</p>
+            </div>
+
+            <section id="conclusion">
+                <h2>Conclusion</h2>
+                <p>Building a company on the principles of Bushido is not about being rigid or old-fashioned. It's about creating a timeless foundation of trust, respect, and integrity that empowers people to do their best work. It is a commitment to building a business that is not only successful, but also honorable and worthy of loyalty.</p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
