@@ -1,7 +1,7 @@
 /* General Styling */
 :root {
-    --primary-color: #b71c1c; /* Deep Red */
-    --secondary-color: #2c3e50; /* Dark Slate Blue */
+    --primary-color: #334443; /* Deep Red */
+    --secondary-color: #34656D; /* Dark Slate Blue */
     --accent-color: #f39c12; /* Gold/Orange */
     --text-primary: #212121; /* Near Black */
     --text-secondary: #757575; /* Gray */
@@ -37,8 +37,9 @@ header {
     text-align: center;
     margin-bottom: 3rem;
     padding: 3rem 1rem;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(assets/img/Digital_reunesans_2.jpg);
-    background-size: cover;
+    background: 
+        linear-gradient(to bottom, var(--primary-color), var(--secondary-color)),
+        url(assets/img/Digital_reunesans_2.jpg);background-size: cover;
     background-position: center;
     color: white;
     border-radius: 12px;
@@ -173,4 +174,18 @@ li::before {
     left: 0;
     color: var(--primary-color);
     font-weight: bold;
+}
+/* FIX: Added the dot (.) to correctly target the class */
+.cta-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.cta-section h3 {
+    color: white;
+    margin-bottom: 1rem;
 }
