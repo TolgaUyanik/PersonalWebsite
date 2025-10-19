@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FingerPrint Authentication Data</title>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <style>
+    body {
+      background-color: #222831;
+      color: #eeeeee;
+      font-family: "Poppins", sans-serif;
+      margin: 40px;
+      padding: 0 80px;
+    }
+
+    h1 {
+      color: #00adb5;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2.2em;
+    }
+
+    h2 {
+      color: #00adb5;
+      text-align: center;
+      margin-bottom: 30px;
+      margin-top: 40px;
+      font-size: 1.8em;
+      border-bottom: 2px solid #00adb5;
+      padding-bottom: 15px;
+    }
+
+    .description-section {
+      background-color: #393e46;
+      border-left: 4px solid #00adb5;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 4px;
+      line-height: 1.6;
+    }
+
+    .description-section h3 {
+      color: #00adb5;
+      margin-top: 0;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .metric-card {
+      background-color: #393e46;
+      border: 2px solid #00adb5;
+      border-radius: 6px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .metric-card h4 {
+      color: #00adb5;
+      margin-top: 0;
+      font-size: 1.1em;
+    }
+
+    .metric-value {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #00adb5;
+      margin: 10px 0;
+    }
+
+    .metric-description {
+      font-size: 0.9em;
+      color: #bfbfbf;
+    }
+
+    table.dataTable {
+      border-collapse: collapse !important;
+      background-color: #393e46;
+      color: #eeeeee;
+      width: 100%;
+    }
+
+    table.dataTable thead th {
+      background-color: #00adb5;
+      color: #222831;
+      font-weight: 600;
+    }
+
+    table.dataTable tbody tr:hover {
+      background-color: #00adb520;
+    }
+
+    .dataTables_wrapper .dataTables_filter input {
+      background-color: #393e46;
+      color: #eeeeee;
+      border: 1px solid #00adb5;
+      border-radius: 6px;
+      padding: 4px 8px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+      color: #00adb5 !important;
+      border: none !important;
+      background: none !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+      color: #222831 !important;
+      background-color: #00adb5 !important;
+      border-radius: 4px;
+    }
+
+    .warning-text {
+      color: #ff6b6b;
+      font-weight: 600;
+    }
+
+    .success-text {
+      color: #51cf66;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔐 Scraper Quality Check Dashboard</h1>
+
+  <div class="description-section">
+    <h3>📋 About This Tool</h3>
+    <p>This dashboard validates the quality of your scraper by analyzing fingerprint authentication metrics. The results help determine whether your scraper can maintain long-term functionality without being detected as a bot.</p>
+  </div>
+
+  <div class="description-section">
+    <h3>🎯 Key Metrics to Monitor</h3>
+    <p><strong>Bot Detection:</strong> <span class="warning-text">CRITICAL</span> - If marked as "Yes", your scraper will be blocked. All current records show "No" (✓ Good).</p>
+    <p><strong>FingerPrint Authenticity:</strong> <span class="success-text">PRIMARY METRIC</span> - Indicates how legitimate your request appears. Higher percentages (85%-95%) are ideal. Represents the credibility of your browser fingerprint.</p>
+    <p><strong>Location/Timezone Match:</strong> Validates that your IP, timezone, and location are consistent. Mismatches can trigger detection algorithms.</p>
+    <p><strong>Proxy Usage:</strong> All records show "No" proxy, meaning requests appear to come directly from real devices.</p>
+  </div>
+
+  <div class="metrics-grid" id="metricsContainer"></div>
+
+  <h2>📊 Detailed Authentication Records</h2>
+
+  <table id="fingerprintTable" class="display" style="width:100%"></table>
+
+  <script id="csvData" type="text/csv">
+IP Address,Browser,Ip Time Zone,FingerPrint Authenticity,Platform,Location,Language,Postal_Code,ISP,Proxy,Bot Detection
+********,Huawei Browser 12.1.3.304,Europe/Istanbul,Browser fingerprint authenticity:  85%,Android 10,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Android 10,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Chrome 107.0.0.0,Europe/Istanbul,Browser fingerprint authenticity:  95%,Windows 10,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Windows 10,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Mobile Safari 15.6.1,Europe/Istanbul,Browser fingerprint authenticity:  90%,iOS 15.6.1,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",iOS 15.6.1,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Chrome 81.0.4044.138,Europe/Istanbul,Browser fingerprint authenticity:  85%,Android 4.4.2,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Android 4.4.2,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,GSA 237.1.487000117,Europe/Istanbul,Browser fingerprint authenticity:  90%,iOS 16.1,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",iOS 16.1,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Facebook 391.1.0.37.104,Europe/Istanbul,Browser fingerprint authenticity:  85%,Android 12,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Android 12,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Chrome 107.0.0.0,Europe/Istanbul,Browser fingerprint authenticity:  85%,Android 12,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Android 12,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Chrome WebView 107.0.5304.105,Europe/Istanbul,Browser fingerprint authenticity:  82%,Android 12,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Android 12,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Chrome 107.0.0.0,Europe/Istanbul,Browser fingerprint authenticity:  85%,Android 12,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Android 12,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Facebook 390.1.0.38.101,Europe/Istanbul,Browser fingerprint authenticity:  90%,iOS 15.6.1,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",iOS 15.6.1,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Chrome 107.0.0.0,Europe/Istanbul,Browser fingerprint authenticity:  85%,Android 11,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Android 11,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Chrome 107.0.0.0,Europe/Istanbul,Browser fingerprint authenticity:  85%,Android 9,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Android 9,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Chrome 107.0.0.0,Europe/Istanbul,Browser fingerprint authenticity:  85%,Android 11,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Android 11,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Chrome 107.0.0.0,Europe/Istanbul,Browser fingerprint authenticity:  85%,Android 11,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Android 11,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Facebook 355.0.0.21.108,Europe/Istanbul,Browser fingerprint authenticity:  85%,Android 9,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Android 9,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Chrome 96.0.4664.45,Europe/Istanbul,Browser fingerprint authenticity:  85%,Linux undefined,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Linux undefined,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Chrome 106.0.0.0,Europe/Istanbul,Browser fingerprint authenticity:  85%,Android 11,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Android 11,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Mobile Safari 15.6.1,Europe/Istanbul,Browser fingerprint authenticity:  90%,iOS 15.6.1,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",iOS 15.6.1,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Facebook 386.0.0.35.108,Europe/Istanbul,Browser fingerprint authenticity:  85%,Android 10,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Android 10,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+********,Chrome 107.0.0.0,Europe/Istanbul,Browser fingerprint authenticity:  95%,Windows 10,"36° 53′ 12.480″ N, 30° 41′ 38.400″ E",Windows 10,Europe/Istanbul,Turk Telekomunikasyon A.S,No,No
+  </script>
+
+  <script>
+    const csv = document.getElementById('csvData').textContent.trim();
+    const parsed = Papa.parse(csv, { header: true });
+    
+    // Calculate metrics
+    const data = parsed.data.filter(row => row['IP Address']); // Remove empty rows
+    const avgAuth = data.reduce((sum, row) => {
+      const match = row['FingerPrint Authenticity'].match(/(\d+)%/);
+      return sum + (match ? parseInt(match[1]) : 0);
+    }, 0) / data.length;
+    
+    const botDetected = data.filter(row => row['Bot Detection'] === 'Yes').length;
+    const allMatched = data.every(row => row['Ip Time Zone'] === row['Postal_Code']);
+    
+    // Display metrics
+    const metricsHTML = `
+      <div class="metric-card">
+        <h4>Average Authenticity</h4>
+        <div class="metric-value">${avgAuth.toFixed(1)}%</div>
+        <div class="metric-description">Higher is better (85%+ recommended)</div>
+      </div>
+      <div class="metric-card">
+        <h4>Bot Detection Alerts</h4>
+        <div class="metric-value">${botDetected}</div>
+        <div class="metric-description">Records flagged as bots</div>
+      </div>
+      <div class="metric-card">
+        <h4>Total Records</h4>
+        <div class="metric-value">${data.length}</div>
+        <div class="metric-description">Fingerprint checks analyzed</div>
+      </div>
+      <div class="metric-card">
+        <h4>Location Consistency</h4>
+        <div class="metric-value">${allMatched ? '✓ All Match' : '⚠ Mismatch'}</div>
+        <div class="metric-description">Timezone & location alignment</div>
+      </div>
+    `;
+    
+    document.getElementById('metricsContainer').innerHTML = metricsHTML;
+    
+    const cols = Object.keys(parsed.data[0]).map(key => ({ title: key, data: key }));
+    $('#fingerprintTable').DataTable({
+      data: data,
+      columns: cols,
+      pageLength: 10
+    });
+  </script>
+</body>
+</html>
