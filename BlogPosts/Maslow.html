@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,222 +7,20 @@
     <meta name="keywords" content="Maslow, hierarchy of needs, self-transcendence, psychology, motivation, self-actualization" />
     <meta name="author" content="Psychology Insights" />
     <title>Beyond the Pyramid: Understanding Maslow's Hierarchy of Needs</title>
-    <style>
-      :root {
-        --primary-color: #2c3e50;
-        --secondary-color: #4caf50;
-        --background-light: #f0f8ff;
-        --text-color: #333;
-        --text-secondary: #444;
-        --border-radius: 6px;
-        --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/stylesblog-dark.css">
 
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        line-height: 1.7;
-        margin: 0;
-        padding: 2rem 1rem;
-        color: var(--text-color);
-        background-color: #fafafa;
-      }
-
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        background: white;
-        padding: 3rem;
-        border-radius: var(--border-radius);
-        box-shadow: var(--shadow);
-      }
-
-      header {
-        margin-bottom: 3rem;
-        text-align: center;
-      }
-
-      h1 {
-        color: var(--primary-color);
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
-        margin-bottom: 1rem;
-        line-height: 1.2;
-      }
-
-      h2 {
-        color: var(--primary-color);
-        font-size: clamp(1.3rem, 3vw, 1.6rem);
-        margin: 2.5rem 0 1rem 0;
-        border-bottom: 2px solid var(--secondary-color);
-        padding-bottom: 0.5rem;
-      }
-
-      h3 {
-        color: var(--primary-color);
-        font-size: 1.2rem;
-        margin: 2rem 0 1rem 0;
-      }
-
-      section {
-        margin-bottom: 2rem;
-      }
-
-      p {
-        margin-bottom: 1.2rem;
-      }
-
-      ul {
-        padding-left: 1.5rem;
-        margin-bottom: 1.5rem;
-      }
-
-      li {
-        margin-bottom: 0.5rem;
-      }
-
-      .hierarchy-level {
-        background: #f8f9fa;
-        padding: 1.5rem;
-        margin: 1.5rem 0;
-        border-left: 4px solid var(--secondary-color);
-        border-radius: 0 var(--border-radius) var(--border-radius) 0;
-      }
-
-      .hierarchy-level h3 {
-        margin-top: 0;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .level-number {
-        background: var(--secondary-color);
-        color: white;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.9rem;
-        font-weight: bold;
-        flex-shrink: 0;
-      }
-
-      .takeaway {
-        background: linear-gradient(135deg, var(--background-light), #e8f5e8);
-        padding: 2rem;
-        border-radius: var(--border-radius);
-        border: 1px solid #e0e0e0;
-        margin: 2rem 0;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .takeaway::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 4px;
-        background: var(--secondary-color);
-      }
-
-      .takeaway h2 {
-        border-bottom: none;
-        margin-top: 0;
-        color: var(--primary-color);
-      }
-
-      em {
-        color: var(--text-secondary);
-        font-style: italic;
-      }
-
-      strong {
-        color: var(--primary-color);
-        font-weight: 600;
-      }
-
-      .intro {
-        font-size: 1.1rem;
-        color: var(--text-secondary);
-        text-align: center;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      .transcendence {
-        background: linear-gradient(135deg, #fff8e1, #f3e5f5);
-        border-left-color: #9c27b0;
-      }
-
-      .nav-list {
-        background: #f8f9fa;
-        padding: 1rem;
-        border-radius: var(--border-radius);
-        margin: 2rem 0;
-      }
-
-      .nav-list h3 {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
-        color: var(--text-secondary);
-      }
-
-      .nav-list ol {
-        margin: 0;
-        padding-left: 1.2rem;
-      }
-
-      .nav-list li {
-        margin-bottom: 0.3rem;
-      }
-
-      .nav-list a {
-        color: var(--primary-color);
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .nav-list a:hover {
-        color: var(--secondary-color);
-        text-decoration: underline;
-      }
-
-      @media (max-width: 768px) {
-        .container {
-          padding: 2rem 1.5rem;
-        }
-        
-        .hierarchy-level {
-          padding: 1rem;
-        }
-        
-        .takeaway {
-          padding: 1.5rem;
-        }
-      }
-
-      /* Focus styles for accessibility */
-      a:focus,
-      button:focus {
-        outline: 2px solid var(--secondary-color);
-        outline-offset: 2px;
-      }
-
-      /* Smooth scrolling for anchor links */
-      html {
-        scroll-behavior: smooth;
-      }
-    </style>
   </head>
   <body>
+    <nav class="nav">
+        <a href="../homepage-v2.html" class="nav-logo">Tolga Uyanik</a>
+        <ul class="nav-links">
+            <li><a href="../homepage-v2.html">Home</a></li>
+            <li><a href="../blogs-v2.html">Blog</a></li>
+        </ul>
+    </nav>
     <div class="container">
       <article>
         <header>
@@ -364,5 +162,15 @@
         </aside>
       </article>
     </div>
-  </body>
+  
+    <footer>
+        <div class="footer-nav">
+            <a href="../homepage-v2.html">Home</a>
+            <a href="../blogs-v2.html">Blog</a>
+            <a href="https://github.com/TolgaUyanik" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/tolgauyanik" target="_blank">LinkedIn</a>
+        </div>
+        <p class="footer-tagline">Building systems that find alpha.</p>
+    </footer>
+</body>
 </html>

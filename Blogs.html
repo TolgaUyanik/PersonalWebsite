@@ -1,1112 +1,1138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Posts - Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #667eea;
-            --primary-dark: #5a6fd8;
-            --secondary-color: #764ba2;
-            --dark-bg: #1a1a1a;
-            --darker-bg: #0f0f0f;
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-muted: rgba(255, 255, 255, 0.5);
-            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            --hover-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Blog Posts — Philosophy, Business Strategy, Psychology, and Leadership insights by Tolga Uyanik">
+  <meta name="author" content="Tolga Uyanik">
+  <title>Blog Posts — Tolga Uyanik</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--darker-bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  <style>
+    /* ══════════════════════════════════════════════════════════════
+       DESIGN SYSTEM — Bugatti-inspired dark luxury + tech utility
+       Matching homepage-v2.html
+    ══════════════════════════════════════════════════════════════ */
+    :root {
+      --bg: oklch(6% 0.01 260);
+      --surface: oklch(10% 0.012 260);
+      --surface-elevated: oklch(14% 0.015 260);
+      --fg: oklch(95% 0.005 260);
+      --fg-muted: oklch(60% 0.01 260);
+      --border: oklch(20% 0.015 260);
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+      --accent: oklch(70% 0.18 200);
+      --accent-glow: oklch(70% 0.18 200 / 0.3);
 
-        ::-webkit-scrollbar-track {
-            background: var(--dark-bg);
-        }
+      --font-display: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 4px;
-        }
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 8rem;
 
-        /* Navigation */
-        .navbar {
-            background: rgba(26, 26, 26, 0.95) !important;
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            padding: 1rem 0;
-        }
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-fast: 150ms;
+      --duration-normal: 300ms;
+      --duration-slow: 600ms;
+    }
 
-        .navbar-brand {
-            font-weight: 600;
-            font-size: 1.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .navbar-toggler {
-            border: none;
-            color: var(--text-primary);
-        }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-        /* Header Section */
-        .hero-section {
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 50%, var(--darker-bg) 100%);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--fg);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
 
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="0.5" fill="%23ffffff" opacity="0.05"/><circle cx="75" cy="75" r="0.3" fill="%23667eea" opacity="0.03"/><circle cx="50" cy="10" r="0.4" fill="%23764ba2" opacity="0.04"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            animation: float 20s ease-in-out infinite;
-        }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(1deg); }
-        }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
 
-        .hero-content {
-            text-align: center;
-            z-index: 2;
-            position: relative;
-            max-width: 800px;
-            padding: 2rem;
-        }
+    /* ══════════════════════════════════════════════════════════════
+       NAVIGATION
+    ══════════════════════════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, var(--bg), transparent);
+      transition: background var(--duration-normal) var(--ease-out);
+    }
 
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 2rem;
-            animation: slideUp 1s ease-out;
-        }
+    .nav.scrolled {
+      background: oklch(6% 0.01 260 / 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
 
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: slideUp 1s ease-out 0.2s both;
-        }
+    .nav-logo {
+      font-weight: 500;
+      font-size: 1.125rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .nav-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
 
-        .cta-button {
-            background: var(--gradient);
-            border: none;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            color: white;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: var(--card-shadow);
-            animation: slideUp 1s ease-out 0.4s both;
-        }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--fg-muted);
+      transition: color var(--duration-fast) var(--ease-out);
+    }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--hover-shadow);
-            color: white;
-        }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--fg);
+    }
 
-        /* Blog Posts Section */
-        .blog-section {
-            padding: 5rem 0;
-            background: var(--dark-bg);
-        }
+    /* ══════════════════════════════════════════════════════════════
+       HERO — Simplified for blog index
+    ══════════════════════════════════════════════════════════════ */
+    .hero {
+      min-height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-xl) var(--space-lg);
+      padding-top: calc(var(--space-xl) + 80px);
+      position: relative;
+    }
 
-        .blog-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 3rem;
-        }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, var(--accent-glow), transparent);
+      pointer-events: none;
+    }
 
-        .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--hover-shadow);
-            border-color: rgba(102, 126, 234, 0.3);
-        }
+    .hero-content {
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+    }
 
-        .blog-card-image {
-            position: relative;
-            overflow: hidden;
-            height: 300px;
-        }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-sm);
+    }
 
-        .blog-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: var(--space-md);
+    }
 
-        .blog-card:hover .blog-card-image img {
-            transform: scale(1.1);
-        }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      font-weight: 300;
+      color: var(--fg-muted);
+      max-width: 700px;
+      margin: 0 auto;
+    }
 
-        .blog-card-content {
-            padding: 2.5rem;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-        }
+    /* ══════════════════════════════════════════════════════════════
+       FILTERS
+    ══════════════════════════════════════════════════════════════ */
+    .filters {
+      padding: var(--space-md) var(--space-lg);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-        .blog-card-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
+    .filter-row {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: var(--space-md);
+    }
 
-        .blog-card-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
+    .filter-btn {
+      padding: var(--space-xs) var(--space-sm);
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--fg-muted);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+    }
 
-        .blog-card-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--fg);
+      color: var(--bg);
+      border-color: var(--fg);
+    }
 
-        .blog-card-button {
-            background: var(--gradient);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-        }
+    .search-box {
+      max-width: 400px;
+      margin: 0 auto;
+      position: relative;
+    }
 
-        .blog-card-button:hover {
-            transform: translateX(5px);
-            color: white;
-        }
+    .search-box input {
+      width: 100%;
+      padding: var(--space-sm) var(--space-md);
+      padding-left: calc(var(--space-md) + 20px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      transition: border-color var(--duration-fast) var(--ease-out);
+    }
 
-        /* Search and Filter */
-        .blog-controls {
-            max-width: 600px;
-            margin: 0 auto 4rem;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
+    .search-box input::placeholder {
+      color: var(--fg-muted);
+    }
 
-        .search-box {
-            flex: 1;
-            min-width: 250px;
-            padding: 1rem 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            color: var(--text-primary);
-            font-size: 1rem;
-        }
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
 
-        .search-box:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
+    .search-box svg {
+      position: absolute;
+      left: var(--space-sm);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      stroke: var(--fg-muted);
+    }
 
-        .filter-button {
-            padding: 0.75rem 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    /* ══════════════════════════════════════════════════════════════
+       BLOG GRID — Cinematic cards matching project cards
+    ══════════════════════════════════════════════════════════════ */
+    .blog-section {
+      padding: var(--space-lg) var(--space-lg);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-        .filter-button.active,
-        .filter-button:hover {
-            background: var(--gradient);
-            border-color: transparent;
-            color: white;
-        }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .blog-card-content {
-                padding: 2rem;
-            }
-            
-            .blog-controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .search-box {
-                min-width: auto;
-            }
-        }
+    .blog-card {
+      position: relative;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: all var(--duration-slow) var(--ease-out);
+    }
 
-        /* Loading Animation */
-        .loading {
-            opacity: 0;
-            animation: fadeIn 0.6s ease-out forwards;
-        }
+    .blog-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+    .blog-card-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+      transition: all var(--duration-slow) var(--ease-out);
+    }
 
-        /* Category badges */
-        .category-badge {
-            background: rgba(102, 126, 234, 0.2);
-            color: var(--primary-color);
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-    </style>
+    .blog-card:hover .blog-card-image {
+      opacity: 0.7;
+      transform: scale(1.03);
+    }
+
+    .blog-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--bg) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .blog-card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: var(--space-md);
+    }
+
+    .blog-card-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    .blog-card-title {
+      font-size: 1.125rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-xs);
+      line-height: 1.3;
+    }
+
+    .blog-card-meta {
+      font-size: 0.75rem;
+      color: var(--fg-muted);
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .blog-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      margin-top: var(--space-sm);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fg);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .blog-card:hover .blog-card-link {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .blog-card-link svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════════════════ */
+    .footer {
+      padding: var(--space-lg) var(--space-lg);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-xs);
+    }
+
+    .footer-name {
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-dot {
+      color: var(--fg-muted);
+    }
+
+    .footer-link {
+      color: var(--fg-muted);
+      font-size: 0.875rem;
+      transition: color var(--duration-fast) var(--ease-out);
+    }
+
+    .footer-link:hover {
+      color: var(--accent);
+    }
+
+    .footer-tagline {
+      font-size: 0.75rem;
+      font-style: italic;
+      color: var(--fg-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: var(--space-sm) var(--space-md);
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: var(--space-lg) var(--space-md);
+        padding-top: calc(var(--space-lg) + 60px);
+      }
+
+      .filters {
+        padding: var(--space-sm) var(--space-md);
+      }
+
+      .blog-section {
+        padding: var(--space-md) var(--space-md);
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+      }
+
+      .blog-card {
+        aspect-ratio: 16/12;
+      }
+
+      .footer {
+        padding: var(--space-md) var(--space-md);
+      }
+    }
+
+    /* Hidden state for filtering */
+    .blog-card.hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="index.html">
-                <i class="fas fa-home me-2"></i>Main Page
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <!-- Navigation items can be added here -->
-            </div>
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Tolga Uyanik</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="Blogs.html" class="active">Blog</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Knowledge Repository</p>
+      <h1 class="hero-title">Blog Posts</h1>
+      <p class="hero-subtitle">
+        Deep dives into philosophy, business strategy, psychology, and leadership. Each post distills key insights from books, thinkers, and frameworks into actionable knowledge.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="filters">
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="business">Business</button>
+      <button class="filter-btn" data-filter="sales">Sales</button>
+      <button class="filter-btn" data-filter="marketing">Marketing</button>
+      <button class="filter-btn" data-filter="philosophy">Philosophy</button>
+      <button class="filter-btn" data-filter="psychology">Psychology</button>
+      <button class="filter-btn" data-filter="productivity">Productivity</button>
+    </div>
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="M21 21l-4.35-4.35"/>
+      </svg>
+      <input type="text" id="searchInput" placeholder="Search posts...">
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="blog-section">
+    <div class="blog-grid" id="blogGrid">
+
+      <!-- Epiktetos -->
+      <a href="BlogPosts/Epiktetos.html" class="blog-card" data-category="philosophy">
+        <img src="assets/img/Epiktetos.jpg" alt="Epiktetos" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Philosophy</span>
+          <h3 class="blog-card-title">Epiktetos: From Slavery to Stoic Mastery</h3>
+          <p class="blog-card-meta">
+            <span>15 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
         </div>
-    </nav>
+      </a>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">Blog Posts</h1>
-            <p class="hero-subtitle">
-                A collection of deep dives into philosophy, business strategy, psychology, and leadership. Each post distills key insights from books, thinkers, and real-world frameworks into actionable knowledge you can apply immediately.
-            </p>
-            <a href="#blog-posts" class="cta-button">
-                <i class="fas fa-arrow-down me-2"></i>Explore Posts
-            </a>
+      <!-- Alex Hormozi Sales -->
+      <a href="BlogPosts/AlexHormoziSales.html" class="blog-card" data-category="sales">
+        <img src="assets/img/AlexHormoziSales.jpg" alt="Alex Hormozi Sales Training" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Sales</span>
+          <h3 class="blog-card-title">Alex Hormozi's Ultimate Sales Training: The Complete Blueprint</h3>
+          <p class="blog-card-meta">
+            <span>30 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
         </div>
-    </section>
+      </a>
 
-    <!-- Blog Posts Section -->
-    <section class="blog-section" id="blog-posts">
-        <div class="container px-4 px-lg-5">
-            <!-- Search and Filter Controls -->
-            <div class="blog-controls">
-                <input type="text" class="search-box" placeholder="Search blog posts..." id="searchInput">
-                <button class="filter-button active" data-filter="all">All</button>
-                <button class="filter-button" data-filter="business">Business</button>
-                <button class="filter-button" data-filter="sales">Sales</button>
-                <button class="filter-button" data-filter="marketing">Marketing</button>
-                <button class="filter-button" data-filter="philosophy">Philosophy</button>
-                <button class="filter-button" data-filter="psychology">Psychology</button>
-                <button class="filter-button" data-filter="productivity">Productivity</button>
-            </div>
-
-            <!-- Blog Posts Grid -->
-            <div class="row" id="blogGrid">
-                <!-- Epiktetos: From Slavery to Stoic Mastery -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="philosophy" style="animation-delay: 0.3s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/Epiktetos.jpg" alt="Epiktetos - From Slavery to Stoic Mastery" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Philosophy</span>
-                                <span><i class="fas fa-clock me-1"></i>15 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Epiktetos: From Slavery to Stoic Mastery</h3>
-                            <p class="blog-card-description">
-                                How a man born into slavery with no legal personhood became one of history's greatest philosophers — proving that freedom is achieved by disciplined control of the mind, not by law, wealth, or position.
-                            </p>
-                            <a href="BlogPosts/Epiktetos.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Alex Hormozi Sales Training -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.3s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/AlexHormoziSales.jpg" alt="Alex Hormozi Sales Training" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Sales</span>
-                                <span><i class="fas fa-clock me-1"></i>30 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Alex Hormozi's Ultimate Sales Training: The Complete Blueprint</h3>
-                            <p class="blog-card-description">
-                                From 4,000+ personal closes: The CLOSER framework, objection handling mastery, and sales multipliers. Includes free downloadable cheatsheet with scripts and SOPs.
-                            </p>
-                            <a href="BlogPosts/AlexHormoziSales.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Alex Hormozi Marketing Playbook -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="marketing" style="animation-delay: 0.4s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/AlexHormoziMarketing.jpg" alt="Alex Hormozi Marketing Playbook" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Marketing</span>
-                                <span><i class="fas fa-clock me-1"></i>25 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Alex Hormozi's Ultimate Marketing Playbook: 13+ Years of Wisdom</h3>
-                            <p class="blog-card-description">
-                                From headlines to LTV/CAC ratios: A complete breakdown of Alex Hormozi's battle-tested marketing frameworks. Includes free downloadable cheatsheet with 20 actionable formulas.
-                            </p>
-                            <a href="BlogPosts/AlexHormoziMarketing.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Alex Hormozi 7 Hour Masterclass -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.5s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/AlexHormozi7Hours.jpg" alt="Alex Hormozi 7 Hour Masterclass" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Business</span>
-                                <span><i class="fas fa-clock me-1"></i>45 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Alex Hormozi's 7-Hour Masterclass: 9 Lessons on Wealth & Winning</h3>
-                            <p class="blog-card-description">
-                                From $0 to $100M at 31: A comprehensive breakdown of Alex Hormozi's most valuable lessons on wealth building, mindset, work ethic, and the brutal truths that separate winners from everyone else.
-                            </p>
-                            <a href="BlogPosts/AlexHormozi7Hours.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4 Hour Work Week -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.6s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/4HourWorkWeek.jpg" alt="4 Hour Work Week Book Cover" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Business</span>
-                                <span><i class="fas fa-clock me-1"></i>18 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">The 4-Hour Work Week: Redefining Productivity</h3>
-                            <p class="blog-card-description">
-                                Explore Tim Ferriss's strategies for escaping the 9-to-5 grind, automating income, and creating a lifestyle focused on freedom and personal growth.
-                            </p>
-                            <a href="BlogPosts/4HourWorkweek.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Extreme Ownership -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.6s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/ExtremeOwnership.jpg" alt="Extreme Ownership Book Cover" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Leadership</span>
-                                <span><i class="fas fa-clock me-1"></i>18 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Extreme Ownership: Leaders Take Responsibility</h3>
-                            <p class="blog-card-description">
-                                Learn how Jocko Willink and Leif Babin's principles of accountability and leadership from the Navy SEALs can transform any team or organization.
-                            </p>
-                            <a href="BlogPosts/ExtremeOwnership.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- GRIT -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.6s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/GRIT.jpg" alt="GRIT Book Cover" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Mindset</span>
-                                <span><i class="fas fa-clock me-1"></i>18 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">GRIT: Passion and Perseverance for Long-Term Success</h3>
-                            <p class="blog-card-description">
-                                Discover Angela Duckworth's research on how resilience, determination, and consistent effort outweigh talent in achieving extraordinary results.
-                            </p>
-                            <a href="BlogPosts/GRIT.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Millionaire Fast Lane -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.6s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/MillionaireFastlane.jpg" alt="Millionaire Fastlane Book Cover" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Finance</span>
-                                <span><i class="fas fa-clock me-1"></i>18 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">The Millionaire Fastlane: Escape the Rat Race</h3>
-                            <p class="blog-card-description">
-                                Learn MJ DeMarco's framework for achieving financial independence quickly through entrepreneurship and value creation, rather than slow passive growth.
-                            </p>
-                            <a href="BlogPosts/MillionaireFastLane.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mindset -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.6s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/Mindset.jpg" alt="Mindset Book Cover" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Self-Development</span>
-                                <span><i class="fas fa-clock me-1"></i>18 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Mindset: The New Psychology of Success</h3>
-                            <p class="blog-card-description">
-                                Carol Dweck explains how adopting a growth mindset can improve learning, resilience, and achievement in both personal and professional life.
-                            </p>
-                            <a href="BlogPosts/Mindset.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tools for Titans -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.6s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/ToolsforTitans.jpg" alt="Tools for Titans Book Cover" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Productivity</span>
-                                <span><i class="fas fa-clock me-1"></i>18 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Tools for Titans: Tactics, Routines, and Habits of High Performers</h3>
-                            <p class="blog-card-description">
-                                Tim Ferriss shares insights, routines, and tips from world-class performers across industries to optimize your productivity and life strategies.
-                            </p>
-                            <a href="BlogPosts/ToolsforTitans.HTML" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SkinHealth -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.6s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/SkinHealth.jpg" alt="Andrew Huberman Skin Health" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Health</span>
-                                <span><i class="fas fa-clock me-1"></i>18 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">The Science of Skin Health: What Your Skin Says About You</h3>
-                            <p class="blog-card-description">
-                                Discover how your skin reflects your overall well-being. Learn the science behind skin biology, light exposure, collagen, and the gut-skin connection—based on insights from Dr. Andrew Huberman’s research on how internal health shows on the surface.
-                            </p>
-                            <a href="BlogPosts/HubermanSkinHealth.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- The One Thing -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.6s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/TheOneThing.jpg" alt="The Alchemy of Finance" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Business</span>
-                                <span><i class="fas fa-clock me-1"></i>18 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">The ONE Thing: How to Find Your Focus and Unlock Extraordinary Success</h3>
-                            <p class="blog-card-description">
-                                Learn the surprisingly simple truth behind extraordinary results: identify and focus on the one thing that matters most.
-                            </p>
-                            <a href="BlogPosts/TheOneThing.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- The Alchemy of Finance -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.6s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/GeorgeSoros.jpg" alt="The Alchemy of Finance" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Business</span>
-                                <span><i class="fas fa-clock me-1"></i>18 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">The Alchemy of Finance: Soros's Theory of Reflexivity</h3>
-                            <p class="blog-card-description">
-                                An exploration of George Soros's revolutionary concept that markets are driven by self-reinforcing feedback loops between perception and reality, creating opportunities for manipulation and modern imperialism.
-                            </p>
-                            <a href="BlogPosts/GeorgeSoros.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- 21 Rules for Living -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.6s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/dokkodo.jpg" alt="The Path of Aloneness" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Business</span>
-                                <span><i class="fas fa-clock me-1"></i>18 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">The Path of Aloneness: Miyamoto Musashi's 21 Rules for an Unconquerable Mind</h3>
-                            <p class="blog-card-description">
-                                Written just before his death, the Dokkōdō is the legendary samurai's ultimate guide to life, advocating for total discipline, profound detachment, and unwavering commitment to one's chosen path. 
-                            </p>
-                            <a href="BlogPosts/Dokkodo.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- The Hard Thing About Hard Things -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.1s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/The-Hard-Thing-About-Hard-Things.jpg" alt="Business" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Business</span>
-                                <span><i class="fas fa-clock me-1"></i>15 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">The Hard Thing About Hard Things: A CEO's Survival Guide</h3>
-                            <p class="blog-card-description">
-                                A comprehensive analysis of Ben Horowitz's essential leadership book, exploring how to navigate crisis leadership, radical transparency, and psychological resilience when there are no easy answers.</p>
-                            <a href="BlogPosts/Hardthingabouthardthings.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Start with Why Simon Sinek -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.1s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/StartWithWhy.jpg" alt="Business" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Business</span>
-                                <span><i class="fas fa-clock me-1"></i>15 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Start with Why on Hiring & Sales</h3>
-                            <p class="blog-card-description">
-                                Culture is strategy. Discover why a defined company culture is the single greatest competitive advantage in attracting top talent and securing long-term customer loyalty through shared belief.</p>
-                            <a href="BlogPosts/Cal&Huberman.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Cal & Huberman on Focus -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="psychology" style="animation-delay: 0.1s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/Huberman&Cal.jpg" alt="Psychology" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Psychology</span>
-                                <span><i class="fas fa-clock me-1"></i>15 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Upgrading the focus</h3>
-                            <p class="blog-card-description">
-                                Cal Newport is the best author about focus. Huberman is the best podcaster. It was a great podcast.</p>
-                            <a href="BlogPosts/Cal&Huberman.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- On Company Culture -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="psychology" style="animation-delay: 0.1s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/Bushido.jpg" alt="Psychology" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Psychology</span>
-                                <span><i class="fas fa-clock me-1"></i>15 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Building a Company Culture</h3>
-                            <p class="blog-card-description">
-                                People leave, but systems remain. Learn how the timeless principles of Bushido can help you forge an unbreakable company culture built on honor, courage, and integrity.
-                            </p>
-                            <a href="BlogPosts/SamuraiCulture.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!--Eight Fold Path -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="psychology" style="animation-delay: 0.1s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/8foldpath.jpg" alt="Psychology" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Psychology</span>
-                                <span><i class="fas fa-clock me-1"></i>10 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Understanding Emotions & Managing Them</h3>
-                            <p class="blog-card-description">
-                                Aristotle said, "We can not learn without pain," so the way of the Buddha helps to reduce the pain. This tenet increases the learning speed.
-                            </p>
-                            <a href="BlogPosts/8foldpath.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Jim Kwik -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="psychology" style="animation-delay: 0.1s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/JimKwik.jpg" alt="Psychology" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Psychology</span>
-                                <span><i class="fas fa-clock me-1"></i>10 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Pushing the Limits</h3>
-                            <p class="blog-card-description">
-                                Simple tool for breaking down to limits.
-                            </p>
-                            <a href="BlogPosts/JimKwik.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Entrepreneurship Post -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.1s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/entrepreneurship.jpg" alt="Entrepreneurship" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Business</span>
-                                <span><i class="fas fa-clock me-1"></i>15 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Entrepreneurship Insights</h3>
-                            <p class="blog-card-description">
-                                Reviewed more than 100 entrepreneur speeches and distilled key insights into actionable strategies for building successful businesses.
-                            </p>
-                            <a href="BlogPosts/Entrepreneurship.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Wind Book Post -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="philosophy" style="animation-delay: 0.2s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/Wind.jpeg" alt="Go Rin No Sho Wind Book" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Philosophy</span>
-                                <span><i class="fas fa-clock me-1"></i>12 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Go Rin No Sho: Wind Book</h3>
-                            <p class="blog-card-description">
-                                Chapter 4 of Miyamoto Musashi's legendary work, exploring the principles of adaptability and strategic thinking in combat and life.
-                            </p>
-                            <a href="BlogPosts/Wind.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fire Book Post -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="philosophy" style="animation-delay: 0.3s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/Fire.jpg" alt="Fire Book Insights" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Philosophy</span>
-                                <span><i class="fas fa-clock me-1"></i>10 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Fire Book Insights from Go Rin No Sho</h3>
-                            <p class="blog-card-description">
-                                Chapter 3 analysis focusing on solving real-life situations using the strategic principles outlined in the Fire Book.
-                            </p>
-                            <a href="BlogPosts/Fire.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Water Book Post -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="philosophy" style="animation-delay: 0.4s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/Water.webp" alt="Go Rin No Sho Water Book" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Philosophy</span>
-                                <span><i class="fas fa-clock me-1"></i>14 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Go Rin No Sho: Water Book</h3>
-                            <p class="blog-card-description">
-                                Chapter 2 exploration of fluid tactics and the importance of maintaining flexibility in strategy and execution.
-                            </p>
-                            <a href="BlogPosts/waterbook.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ground Book Post -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="philosophy" style="animation-delay: 0.5s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/Ground.png" alt="Go Rin No Sho Ground Book" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Philosophy</span>
-                                <span><i class="fas fa-clock me-1"></i>11 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Go Rin No Sho: Ground Book</h3>
-                            <p class="blog-card-description">
-                                The greatest swordsman's Ground Book summary analyzed with NotebookLM, revealing foundational principles of strategy.
-                            </p>
-                            <a href="BlogPosts/GroundBook.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Alex Hormozi Blueprint Post -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.6s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/Alex-Simon.jpg" alt="Alex Hormozi Money Making Blueprint" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Business</span>
-                                <span><i class="fas fa-clock me-1"></i>18 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Alex Hormozi's Money Making Blueprint</h3>
-                            <p class="blog-card-description">
-                                In-depth review of Alex's blueprint with Simon Squib, analyzed using NotebookLM for actionable business insights.
-                            </p>
-                            <a href="BlogPosts/AlexSimon.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ravikant Wealth Building Post -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.7s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/Ravikant.jpg" alt="Building Wealth From Ravikant" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Business</span>
-                                <span><i class="fas fa-clock me-1"></i>16 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Building Wealth From Ravikant</h3>
-                            <p class="blog-card-description">
-                                Focused analysis on wealth building strategies from Naval Ravikant's perspective, enhanced with NotebookLM insights.
-                            </p>
-                            <a href="BlogPosts/Ravikant.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Maslow's Hierarchy Post -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="psychology" style="animation-delay: 0.8s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/Maslow.jpg" alt="Maslow's Hierarchy of Needs" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Psychology</span>
-                                <span><i class="fas fa-clock me-1"></i>13 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Maslow's Hierarchy of Needs</h3>
-                            <p class="blog-card-description">
-                                Comprehensive analysis of Abraham Maslow's groundbreaking theory in psychology from his 1943 paper "A Theory of Human Motivation".
-                            </p>
-                            <a href="BlogPosts/Maslow.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- $100 Million Offer Post -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="business" style="animation-delay: 0.9s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/Alex$100.jpg" alt="$100 Million Dollar Offer" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Business</span>
-                                <span><i class="fas fa-clock me-1"></i>20 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">$100 Million Dollar Offer</h3>
-                            <p class="blog-card-description">
-                                Detailed review of Alex Hormozi's transformative book using NotebookLM analysis to extract key business strategies.
-                            </p>
-                            <a href="BlogPosts/$100_Offer.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Huberman Lab Post -->
-                <div class="col-lg-6 col-xl-4 loading blog-item" data-category="psychology" style="animation-delay: 1.0s">
-                    <div class="blog-card">
-                        <div class="blog-card-image">
-                            <img src="assets/img/HubermanLab.jpg" alt="Huberman Lab Neuroscience" />
-                        </div>
-                        <div class="blog-card-content">
-                            <div class="blog-card-meta">
-                                <span class="category-badge">Psychology</span>
-                                <span><i class="fas fa-clock me-1"></i>22 min read</span>
-                            </div>
-                            <h3 class="blog-card-title">Using Neuroscience to Upgrade Focus & Energy</h3>
-                            <p class="blog-card-description">
-                                Science-based tools from Huberman Lab with ChatGPT analysis for improving focus, energy, and stress recovery.
-                            </p>
-                            <a href="BlogPosts/HubermanFocus.html" class="blog-card-button">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <!-- Alex Hormozi Marketing -->
+      <a href="BlogPosts/AlexHormoziMarketing.html" class="blog-card" data-category="marketing">
+        <img src="assets/img/AlexHormoziMarketing.jpg" alt="Alex Hormozi Marketing" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Marketing</span>
+          <h3 class="blog-card-title">Alex Hormozi's Ultimate Marketing Playbook</h3>
+          <p class="blog-card-meta">
+            <span>25 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
         </div>
-    </section>
+      </a>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Search functionality
-            const searchInput = document.getElementById('searchInput');
-            const blogItems = document.querySelectorAll('.blog-item');
-            const filterButtons = document.querySelectorAll('.filter-button');
+      <!-- Alex Hormozi 7 Hours -->
+      <a href="BlogPosts/AlexHormozi7Hours.html" class="blog-card" data-category="business">
+        <img src="assets/img/AlexHormozi7Hours.jpg" alt="Alex Hormozi 7 Hour Masterclass" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Business</span>
+          <h3 class="blog-card-title">Alex Hormozi's 7-Hour Masterclass: 9 Lessons on Wealth</h3>
+          <p class="blog-card-meta">
+            <span>45 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
 
-            // Search filter
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                filterPosts(searchTerm, getActiveFilter());
-            });
+      <!-- 4 Hour Work Week -->
+      <a href="BlogPosts/4HourWorkweek.html" class="blog-card" data-category="business">
+        <img src="assets/img/4HourWorkWeek.jpg" alt="4 Hour Work Week" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Business</span>
+          <h3 class="blog-card-title">The 4-Hour Work Week: Redefining Productivity</h3>
+          <p class="blog-card-meta">
+            <span>18 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
 
-            // Category filter
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Update active filter button
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const searchTerm = searchInput.value.toLowerCase();
-                    const category = this.getAttribute('data-filter');
-                    filterPosts(searchTerm, category);
-                });
-            });
+      <!-- Extreme Ownership -->
+      <a href="BlogPosts/ExtremeOwnership.html" class="blog-card" data-category="business">
+        <img src="assets/img/ExtremeOwnership.jpg" alt="Extreme Ownership" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Leadership</span>
+          <h3 class="blog-card-title">Extreme Ownership: Leaders Take Responsibility</h3>
+          <p class="blog-card-meta">
+            <span>18 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
 
-            function getActiveFilter() {
-                const activeButton = document.querySelector('.filter-button.active');
-                return activeButton ? activeButton.getAttribute('data-filter') : 'all';
-            }
+      <!-- GRIT -->
+      <a href="BlogPosts/GRIT.html" class="blog-card" data-category="psychology">
+        <img src="assets/img/GRIT.jpg" alt="GRIT" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Mindset</span>
+          <h3 class="blog-card-title">GRIT: Passion and Perseverance for Long-Term Success</h3>
+          <p class="blog-card-meta">
+            <span>18 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
 
-            function filterPosts(searchTerm, category) {
-                blogItems.forEach(item => {
-                    const title = item.querySelector('.blog-card-title').textContent.toLowerCase();
-                    const description = item.querySelector('.blog-card-description').textContent.toLowerCase();
-                    const itemCategory = item.getAttribute('data-category');
-                    
-                    const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
-                    const matchesCategory = category === 'all' || itemCategory === category;
-                    
-                    if (matchesSearch && matchesCategory) {
-                        item.style.display = 'block';
-                        item.style.animation = 'fadeIn 0.5s ease-out forwards';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            }
+      <!-- Millionaire Fast Lane -->
+      <a href="BlogPosts/MillionaireFastLane.html" class="blog-card" data-category="business">
+        <img src="assets/img/MillionaireFastlane.jpg" alt="Millionaire Fastlane" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Finance</span>
+          <h3 class="blog-card-title">The Millionaire Fastlane: Escape the Rat Race</h3>
+          <p class="blog-card-meta">
+            <span>18 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
 
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
+      <!-- Mindset -->
+      <a href="BlogPosts/Mindset.html" class="blog-card" data-category="psychology">
+        <img src="assets/img/Mindset.jpg" alt="Mindset" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Self-Development</span>
+          <h3 class="blog-card-title">Mindset: The New Psychology of Success</h3>
+          <p class="blog-card-meta">
+            <span>18 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
 
-            // Navbar scroll effect
-            window.addEventListener('scroll', function() {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 100) {
-                    navbar.style.background = 'rgba(26, 26, 26, 0.98)';
-                } else {
-                    navbar.style.background = 'rgba(26, 26, 26, 0.95)';
-                }
-            });
-        });
-    </script>
+      <!-- Tools for Titans -->
+      <a href="BlogPosts/ToolsforTitans.HTML" class="blog-card" data-category="productivity">
+        <img src="assets/img/ToolsforTitans.jpg" alt="Tools for Titans" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Productivity</span>
+          <h3 class="blog-card-title">Tools for Titans: Tactics of High Performers</h3>
+          <p class="blog-card-meta">
+            <span>18 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Skin Health -->
+      <a href="BlogPosts/HubermanSkinHealth.html" class="blog-card" data-category="psychology">
+        <img src="assets/img/SkinHealth.jpg" alt="Skin Health" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Health</span>
+          <h3 class="blog-card-title">The Science of Skin Health</h3>
+          <p class="blog-card-meta">
+            <span>18 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- The One Thing -->
+      <a href="BlogPosts/TheOneThing.html" class="blog-card" data-category="business">
+        <img src="assets/img/TheOneThing.jpg" alt="The One Thing" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Business</span>
+          <h3 class="blog-card-title">The ONE Thing: How to Find Your Focus</h3>
+          <p class="blog-card-meta">
+            <span>18 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- George Soros -->
+      <a href="BlogPosts/GeorgeSoros.html" class="blog-card" data-category="business">
+        <img src="assets/img/GeorgeSoros.jpg" alt="George Soros" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Finance</span>
+          <h3 class="blog-card-title">The Alchemy of Finance: Soros's Theory of Reflexivity</h3>
+          <p class="blog-card-meta">
+            <span>18 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Dokkodo -->
+      <a href="BlogPosts/Dokkodo.html" class="blog-card" data-category="philosophy">
+        <img src="assets/img/dokkodo.jpg" alt="Dokkodo" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Philosophy</span>
+          <h3 class="blog-card-title">The Path of Aloneness: Musashi's 21 Rules</h3>
+          <p class="blog-card-meta">
+            <span>18 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Hard Thing About Hard Things -->
+      <a href="BlogPosts/Hardthingabouthardthings.html" class="blog-card" data-category="business">
+        <img src="assets/img/The-Hard-Thing-About-Hard-Things.jpg" alt="Hard Things" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Business</span>
+          <h3 class="blog-card-title">The Hard Thing About Hard Things: A CEO's Guide</h3>
+          <p class="blog-card-meta">
+            <span>15 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Start With Why -->
+      <a href="BlogPosts/StartWithWhy.html" class="blog-card" data-category="business">
+        <img src="assets/img/StartWithWhy.jpg" alt="Start With Why" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Business</span>
+          <h3 class="blog-card-title">Start with Why: Hiring & Sales</h3>
+          <p class="blog-card-meta">
+            <span>15 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Cal & Huberman -->
+      <a href="BlogPosts/Cal&Huberman.html" class="blog-card" data-category="psychology">
+        <img src="assets/img/Huberman&Cal.jpg" alt="Cal Newport Huberman" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Psychology</span>
+          <h3 class="blog-card-title">Upgrading the Focus</h3>
+          <p class="blog-card-meta">
+            <span>15 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Samurai Culture -->
+      <a href="BlogPosts/SamuraiCulture.html" class="blog-card" data-category="psychology">
+        <img src="assets/img/Bushido.jpg" alt="Samurai Culture" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Culture</span>
+          <h3 class="blog-card-title">Building a Company Culture</h3>
+          <p class="blog-card-meta">
+            <span>15 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 8 Fold Path -->
+      <a href="BlogPosts/8foldpath.html" class="blog-card" data-category="philosophy">
+        <img src="assets/img/8foldpath.jpg" alt="8 Fold Path" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Philosophy</span>
+          <h3 class="blog-card-title">Understanding & Managing Emotions</h3>
+          <p class="blog-card-meta">
+            <span>10 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Jim Kwik -->
+      <a href="BlogPosts/JimKwik.html" class="blog-card" data-category="psychology">
+        <img src="assets/img/JimKwik.jpg" alt="Jim Kwik" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Psychology</span>
+          <h3 class="blog-card-title">Pushing the Limits</h3>
+          <p class="blog-card-meta">
+            <span>10 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Entrepreneurship -->
+      <a href="BlogPosts/Entrepreneurship.html" class="blog-card" data-category="business">
+        <img src="assets/img/entrepreneurship.jpg" alt="Entrepreneurship" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Business</span>
+          <h3 class="blog-card-title">Entrepreneurship Insights</h3>
+          <p class="blog-card-meta">
+            <span>15 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Wind Book -->
+      <a href="BlogPosts/Wind.html" class="blog-card" data-category="philosophy">
+        <img src="assets/img/Wind.jpeg" alt="Wind Book" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Philosophy</span>
+          <h3 class="blog-card-title">Go Rin No Sho: Wind Book</h3>
+          <p class="blog-card-meta">
+            <span>12 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Fire Book -->
+      <a href="BlogPosts/Fire.html" class="blog-card" data-category="philosophy">
+        <img src="assets/img/Fire.jpg" alt="Fire Book" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Philosophy</span>
+          <h3 class="blog-card-title">Fire Book Insights from Go Rin No Sho</h3>
+          <p class="blog-card-meta">
+            <span>10 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Water Book -->
+      <a href="BlogPosts/waterbook.html" class="blog-card" data-category="philosophy">
+        <img src="assets/img/Water.webp" alt="Water Book" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Philosophy</span>
+          <h3 class="blog-card-title">Go Rin No Sho: Water Book</h3>
+          <p class="blog-card-meta">
+            <span>14 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Ground Book -->
+      <a href="BlogPosts/GroundBook.html" class="blog-card" data-category="philosophy">
+        <img src="assets/img/Ground.png" alt="Ground Book" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Philosophy</span>
+          <h3 class="blog-card-title">Go Rin No Sho: Ground Book</h3>
+          <p class="blog-card-meta">
+            <span>11 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Alex Simon -->
+      <a href="BlogPosts/AlexSimon.html" class="blog-card" data-category="business">
+        <img src="assets/img/Alex-Simon.jpg" alt="Alex Hormozi Blueprint" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Business</span>
+          <h3 class="blog-card-title">Alex Hormozi's Money Making Blueprint</h3>
+          <p class="blog-card-meta">
+            <span>18 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Ravikant -->
+      <a href="BlogPosts/Ravikant.html" class="blog-card" data-category="business">
+        <img src="assets/img/Ravikant.jpg" alt="Naval Ravikant" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Business</span>
+          <h3 class="blog-card-title">Building Wealth From Ravikant</h3>
+          <p class="blog-card-meta">
+            <span>16 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Maslow -->
+      <a href="BlogPosts/Maslow.html" class="blog-card" data-category="psychology">
+        <img src="assets/img/Maslow.jpg" alt="Maslow's Hierarchy" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Psychology</span>
+          <h3 class="blog-card-title">Maslow's Hierarchy of Needs</h3>
+          <p class="blog-card-meta">
+            <span>13 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- $100 Million Offer -->
+      <a href="BlogPosts/$100_Offer.html" class="blog-card" data-category="business">
+        <img src="assets/img/Alex$100.jpg" alt="$100 Million Offer" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Business</span>
+          <h3 class="blog-card-title">$100 Million Dollar Offer</h3>
+          <p class="blog-card-meta">
+            <span>20 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Huberman Focus -->
+      <a href="BlogPosts/HubermanFocus.html" class="blog-card" data-category="psychology">
+        <img src="assets/img/HubermanLab.jpg" alt="Huberman Lab" class="blog-card-image">
+        <div class="blog-card-overlay"></div>
+        <div class="blog-card-content">
+          <span class="blog-card-tag">Psychology</span>
+          <h3 class="blog-card-title">Using Neuroscience to Upgrade Focus & Energy</h3>
+          <p class="blog-card-meta">
+            <span>22 min read</span>
+          </p>
+          <span class="blog-card-link">
+            Read More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-name">Tolga Uyanik</span>
+      <span class="footer-dot">·</span>
+      <a href="https://github.com/TolgaUyanik" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+      <span class="footer-dot">·</span>
+      <a href="https://www.linkedin.com/in/tolgauyanik/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      <span class="footer-dot">·</span>
+      <a href="homepage-v2.html" class="footer-link">Home</a>
+    </div>
+    <p class="footer-tagline">Building systems that find alpha.</p>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const blogCards = document.querySelectorAll('.blog-card');
+    const searchInput = document.getElementById('searchInput');
+
+    function filterCards() {
+      const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+      const searchTerm = searchInput.value.toLowerCase();
+
+      blogCards.forEach(card => {
+        const category = card.dataset.category;
+        const title = card.querySelector('.blog-card-title').textContent.toLowerCase();
+        const matchesFilter = activeFilter === 'all' || category === activeFilter;
+        const matchesSearch = title.includes(searchTerm);
+
+        card.classList.toggle('hidden', !matchesFilter || !matchesSearch);
+      });
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterCards();
+      });
+    });
+
+    searchInput.addEventListener('input', filterCards);
+  </script>
 </body>
 </html>

@@ -1,376 +1,1006 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Tolga Uyanik</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    
-    <script
-      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Google fonts-->
-    <link
-      href="https://fonts.googleapis.com/css?family=Varela+Round"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet"
-    />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
-    
-  </head>
-  <body id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#page-top">Main Page</a>
-        <button
-          class="navbar-toggler navbar-toggler-right"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          Menu
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#projects">Blogs</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#StockMarket">Projects</a>
-            </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#Backtesting">Backtesting</a>
-            </li> -->
-            <li class="nav-item">
-              <a class="nav-link" href="#signup">Contact</a>
-            </li>
-          </ul>
-        </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tolga Uyanik — Quantitative Researcher building ML trading strategies and alternative data products. Analyst at De Canaria.">
+  <meta name="author" content="Tolga Uyanik">
+  <title>Tolga Uyanik — Quantitative Researcher</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ══════════════════════════════════════════════════════════════
+       DESIGN SYSTEM — Bugatti-inspired dark luxury + tech utility
+       Deep black canvas, thin elegant type, cyan accent
+    ══════════════════════════════════════════════════════════════ */
+    :root {
+      /* Dark luxury palette */
+      --bg: oklch(6% 0.01 260);
+      --surface: oklch(10% 0.012 260);
+      --surface-elevated: oklch(14% 0.015 260);
+      --fg: oklch(95% 0.005 260);
+      --fg-muted: oklch(60% 0.01 260);
+      --border: oklch(20% 0.015 260);
+
+      /* Cyan accent — Bugatti Chiron inspired */
+      --accent: oklch(70% 0.18 200);
+      --accent-glow: oklch(70% 0.18 200 / 0.3);
+
+      /* Typography */
+      --font-display: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 8rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-fast: 150ms;
+      --duration-normal: 300ms;
+      --duration-slow: 600ms;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESET & BASE
+    ══════════════════════════════════════════════════════════════ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--fg);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       NAVIGATION — Minimal, sticky, luxury feel
+    ══════════════════════════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, var(--bg), transparent);
+      transition: background var(--duration-normal) var(--ease-out);
+    }
+
+    .nav.scrolled {
+      background: oklch(6% 0.01 260 / 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .nav-logo {
+      font-weight: 500;
+      font-size: 1.125rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--fg-muted);
+      transition: color var(--duration-fast) var(--ease-out);
+    }
+
+    .nav-links a:hover {
+      color: var(--fg);
+    }
+
+    .nav-mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-xs);
+    }
+
+    .nav-mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--fg);
+      margin: 5px 0;
+      transition: transform var(--duration-fast) var(--ease-out);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       HERO — Full-bleed project showcase (Bugatti DNA)
+    ══════════════════════════════════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-xl) var(--space-lg);
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, var(--accent-glow), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 80%, oklch(50% 0.1 280 / 0.1), transparent);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 10vw, 8rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-title strong {
+      font-weight: 500;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: var(--fg-muted);
+      max-width: 600px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--fg);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .hero-cta:hover {
+      background: var(--fg);
+      color: var(--bg);
+      border-color: var(--fg);
+    }
+
+    .hero-cta svg {
+      width: 16px;
+      height: 16px;
+      transition: transform var(--duration-fast) var(--ease-out);
+    }
+
+    .hero-cta:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       PROJECTS — Cinematic cards, Bugatti showcase style
+    ══════════════════════════════════════════════════════════════ */
+    .projects {
+      padding: var(--space-xl) var(--space-lg);
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+    }
+
+    .section-count {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      color: var(--fg-muted);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+
+    .project-card {
+      position: relative;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: all var(--duration-slow) var(--ease-out);
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .project-card.featured {
+      grid-column: span 2;
+      aspect-ratio: 21/9;
+    }
+
+    .project-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+      transition: all var(--duration-slow) var(--ease-out);
+    }
+
+    .project-card:hover .project-image {
+      opacity: 0.8;
+      transform: scale(1.03);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--bg) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .project-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: var(--space-md);
+    }
+
+    .project-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--fg-muted);
+      max-width: 500px;
+      line-height: 1.5;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      margin-top: var(--space-sm);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fg);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .project-card:hover .project-link {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       ABOUT — Clean, refined section
+    ══════════════════════════════════════════════════════════════ */
+    .about {
+      padding: var(--space-xl) var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .about-left {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .about-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .about-photo-wrapper {
+      position: relative;
+    }
+
+    .about-photo {
+      width: 280px;
+      height: 350px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      filter: grayscale(20%);
+      transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .about-photo:hover {
+      filter: grayscale(0%);
+      border-color: var(--accent);
+    }
+
+    .about-mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .about-mini-stats .stat {
+      text-align: center;
+    }
+
+    .about-mini-stats .stat-value {
+      font-size: 1.5rem;
+    }
+
+    .about-mini-stats .stat-label {
+      font-size: 0.625rem;
+    }
+
+    .about-content {
+      font-size: 1.25rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--fg-muted);
+    }
+
+    .about-content strong {
+      color: var(--fg);
+      font-weight: 400;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .stat {
+      padding: var(--space-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .stat:hover {
+      border-color: var(--accent);
+      background: var(--surface-elevated);
+    }
+
+    .stat-value {
+      font-size: 3rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      margin-bottom: var(--space-xs);
+      white-space: nowrap;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin-top: var(--space-xs);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       CONTACT — Minimal luxury cards
+    ══════════════════════════════════════════════════════════════ */
+    .contact {
+      padding: var(--space-xl) var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    .contact-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .contact-subtitle {
+      font-size: 1rem;
+      color: var(--fg-muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+
+    .contact-card {
+      padding: var(--space-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent);
+      background: var(--surface-elevated);
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto var(--space-md);
+      color: var(--accent);
+    }
+
+    .contact-card-title {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin-bottom: var(--space-xs);
+    }
+
+    .contact-card-value {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--fg);
+    }
+
+    .contact-card-value:hover {
+      color: var(--accent);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       FOOTER — Clean, refined
+    ══════════════════════════════════════════════════════════════ */
+    .footer {
+      padding: var(--space-lg) var(--space-lg);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-xs);
+    }
+
+    .footer-name {
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-dot {
+      color: var(--fg-muted);
+    }
+
+    .footer-link {
+      color: var(--fg-muted);
+      font-size: 0.875rem;
+      transition: color var(--duration-fast) var(--ease-out);
+    }
+
+    .footer-link:hover {
+      color: var(--accent);
+    }
+
+    .footer-tagline {
+      font-size: 0.75rem;
+      font-style: italic;
+      color: var(--fg-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVE — Mobile-first breakpoints
+    ══════════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card.featured {
+        grid-column: span 1;
+        aspect-ratio: 16/10;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+
+      .about-left {
+        align-items: center;
+      }
+
+      .about-photo {
+        width: 200px;
+        height: 250px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --space-lg: 2rem;
+        --space-xl: 4rem;
+      }
+
+      .nav {
+        padding: var(--space-sm) var(--space-md);
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-mobile-toggle {
+        display: block;
+      }
+
+      .hero {
+        padding: var(--space-xl) var(--space-md);
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-stats {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: var(--space-sm);
+        text-align: center;
+      }
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       ANIMATIONS — Smooth, elegant reveals
+    ══════════════════════════════════════════════════════════════ */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-in {
+      animation: fadeInUp var(--duration-slow) var(--ease-out) forwards;
+      opacity: 0;
+    }
+
+    .animate-delay-1 { animation-delay: 100ms; }
+    .animate-delay-2 { animation-delay: 200ms; }
+    .animate-delay-3 { animation-delay: 300ms; }
+    .animate-delay-4 { animation-delay: 400ms; }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">Tolga Uyanik</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="Blogs.html">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-mobile-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow animate-in">Quantitative Researcher · Analyst @ De Canaria</p>
+      <h1 class="hero-title animate-in animate-delay-1">
+        Building systems<br>that <strong>find alpha</strong>
+      </h1>
+      <p class="hero-subtitle animate-in animate-delay-2">
+        Three-stage ML pipeline: real-time monitor → cost-adjusted backtester → strategy miner.<br>
+        70+ indicators, 72–74% win rates, Profit Factors up to 9.5×.
+      </p>
+      <a href="#projects" class="hero-cta animate-in animate-delay-3">
+        View Projects
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="projects" id="projects">
+    <header class="section-header">
+      <div>
+        <p class="section-label">Quant Research Platform</p>
+        <h2 class="section-title">The Pipeline</h2>
       </div>
-    </nav>
-    <!-- Masthead-->
-    <header class="masthead">
-      <div
-        class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center"
-      >
-        <div class="d-flex justify-content-center">
-          <div class="text-center">
-            <h1 class="mx-auto my-0 text-uppercase">TOLGA UYANIK</h1>
-            <h2 class="text-white-50 mx-auto mt-2 mb-5">Analyst @Decanaria</h2>
-            <h2 class="text-white-50 mx-auto mt-2 mb-5">Entrepreneur, Investor, Business Analyst</h2>
-            <h2 class="text-white-50 mx-auto mt-2 mb-5">& Stoic</h2>
-            <a class="btn btn-primary" href="#about">     About Me     </a>
-          </div>
-        </div>
-      </div>
+      <p class="section-count">Discover → Validate → Deploy → Monitor → Verify</p>
     </header>
-    <!-- About-->
-    <section
-      class="about-section text-center"
-      style="padding-top: 100px; padding-bottom: 0px"
-      id="about"
-    >
-      <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-lg-8">
-            <h2 class="text-white mb-4">About Me</h2>
-            <p class="text-white-50">
-              Results-driven Python developer & data analyst with 3 years of trading experience and 2 years at a
-              multinational startup. Architected 13 Datarade data products—each listed on first-page search results across 16
-              categories—and engineered advanced scrapers using cutting-edge technologies to fuel AI/ML workflows. Ready to
-              propel analytics or fintech teams by uniting product development, and data engineering.
-            </p>
-            <a class="btn btn-primary" href="Tolga Uyanık 24.05.2025.pdf">Full Resume</a>
-            <p> 
-            
-            </p>
-          </div>
+
+    <div class="project-grid">
+      <!-- Featured: Strategy Miner -->
+      <div class="project-card featured">
+        <img src="assets/img/Finance.jpg" alt="Strategy Miner" class="project-image">
+        <div class="project-overlay"></div>
+        <div class="project-content">
+          <span class="project-tag">Stage 1 — Discover</span>
+          <h3 class="project-title">Strategy Miner</h3>
+          <p class="project-desc">
+            Automated alpha discovery engine. Searches hundreds of indicator combinations, tests against minimum-trade-count and profitability gates,
+            runs survivors through walk-forward validation. Top strategies hit 72–74% win rates and Profit Factors up to 9.5×.
+          </p>
+          <span class="project-link">
+            ML Feature Engineering · Search at Scale
+          </span>
         </div>
       </div>
-    </section>
-    <!-- Projects-->
-    <section class="projects-section bg-light" id="projects">
-      <div class="container px-4 px-lg-5">
-        <!-- Featured Project Row-->
-        <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-          <div class="col-xl-8 col-lg-7">
-            <img
-              class="img-fluid mb-3 mb-lg-0"
-              src="assets/img/Books.jpg"
-              alt="..."
-            />
-          </div>
-          <div class="col-xl-4 col-lg-5">
-            <div class="featured-text text-center text-lg-left">
-              <h2 class="text-white">Blog Posts</h2>
-              <p class="text-white-50 mb-0">
-                A dedicated blog section featuring weekly stock market analyses and results from ongoing personal research. Posts include technical breakdowns, indicator-based insights, and commentary on market trends to guide readers through current financial developments. Each entry integrates chart analysis, indicator signals, and practical observations, offering a transparent look into the author’s trading methodology and evolving strategies.
-              </p>
-              <p></p>
-              <a class="btn btn-primary" href="Blogs.html"
-                >Explore The Blog Posts</a
-              >
-            </div>
-          </div>
-        </div>
-        <!-- Project Row One-->
-        <div class="row gx-0 mb-5 mb-lg-0 justify-content-center"  id="StockMarket">
-          <div class="col-lg-6">
-            <img class="img-fluid" src="assets/img/Finance.jpg" alt="..." />
-          </div>
-          <div class="col-lg-6">
-            <div class="bg-black text-center h-100 project">
-              <div class="d-flex h-100">
-                <div
-                  class="project-text w-100 my-auto text-center text-lg-left"
-                >
-                  <h2 class="text-white">Stock Market Technical Indicator Analyzer</h2>
-                  <p class="mb-0 text-white-50">
-                    A Python-based technical analysis tool designed to evaluate stock trading opportunities using a range of financial indicators including RSI, MACD, ADX, and Bollinger Bands. The system applies a weighted scoring algorithm to identify oversold conditions and potential entry points. It incorporates trend strength, volatility, and volume flow to support informed decision-making, and it includes risk management strategies using ATR. This project offers a practical approach to combining momentum, trend, and volatility metrics into a streamlined analysis process for traders and analysts.
-                  </p>
-                  <p></p>
-                  <a class="btn btn-primary" href="https://github.com/TolgaUyanik/StockMarket"
-                    >Explore The Project</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Project Row Two-->
-        <div class="row gx-0 justify-content-center" id="Backtesting">
-          <div class="col-lg-6">
-            <img class="img-fluid" src="assets/img/hourglass.webp" alt="..." />
-          </div>
-          <div class="col-lg-6 order-lg-first">
-            <div class="bg-black text-center h-100 project">
-              <div class="d-flex h-100">
-                <div
-                  class="project-text w-100 my-auto text-center text-lg-right"
-                >
-                  <h4 class="text-white">Backtesting</h4>
-                  <p class="mb-0 text-white-50">
-                    Time based strategy, indicator, & portfolio testing. 
-                  </p>
-                  <p></p>
-                  <a
-                    class="btn btn-primary"
-                    href="https://github.com/TolgaUyanik/Backtesting"
-                    >Explore The Portfolio</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Project Row Three-->
-        <div class="row gx-0 mb-5 mb-lg-0 justify-content-center"  id="StockMarket">
-          <div class="col-lg-6">
-            <img class="img-fluid" src="assets/img/StockMarket.jpg" alt="..." />
-          </div>
-          <div class="col-lg-6">
-            <div class="bg-black text-center h-100 project">
-              <div class="d-flex h-100">
-                <div
-                  class="project-text w-100 my-auto text-center text-lg-left"
-                >
-                  <h2 class="text-white">Hourly Bist Stock Market Data</h2>
-                  <p class="mb-0 text-white-50">
-                    Hourly stock market information will be added with search and order options. Charts will be added too.
-                  </p>
-                  <p></p>
-                  <a class="btn btn-primary" href="Fix.html"
-                    >Go to Data Table</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Project Row Four-->
-        <div class="row gx-0 justify-content-center" id="Backtesting">
-          <div class="col-lg-6">
-            <img class="img-fluid" src="assets/img/RealUserAgents.jpg" alt="..." />
-          </div>
-          <div class="col-lg-6 order-lg-first">
-            <div class="bg-black text-center h-100 project">
-              <div class="d-flex h-100">
-                <div
-                  class="project-text w-100 my-auto text-center text-lg-right"
-                >
-                  <h4 class="text-white">Real User Agents</h4>
-                  <p class="mb-0 text-white-50">
-                    The most important aspect of scraping is using user agents. In the fake-user agents library, user agents are limited and can be easily detected. I enhanced a code it can measure the quality of the user agents, headers, bot detection, proxy & other details. You will see a small result from it.
-                  </p>
-                  <p></p>
-                  <a
-                    class="btn btn-primary"
-                    href="RealUserAgent/RealUserAgent.html"
-                    >Explore The Portfolio</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
+
+      <!-- Backtesting Framework -->
+      <div class="project-card">
+        <img src="assets/img/hourglass.webp" alt="Backtesting Framework" class="project-image">
+        <div class="project-overlay"></div>
+        <div class="project-content">
+          <span class="project-tag">Stage 2 — Validate</span>
+          <h3 class="project-title">Backtesting Framework</h3>
+          <p class="project-desc">
+            Five-phase simulation engine with honest, cost-aware accounting. Models real broker fees (0.315% round-trip BIST).
+            Four-metric ranking: weighted Profit Factor, Sharpe, Win Rate, Consistency.
+          </p>
+          <span class="project-link">
+            Simulation Rigor · Statistical Honesty
+          </span>
         </div>
       </div>
-    </section>
-    <!-- Signup-->
-    <section class="signup-section" id="signup">
-      <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5">
-          <div class="col-md-10 col-lg-8 mx-auto text-center">
-            <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-            <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
-            <form
-              class="form-signup"
-              id="contactForm"
-              data-sb-form-api-token="API_TOKEN"
-            >
-              <!-- Email address input-->
-              <div class="row input-group-newsletter">
-                <div class="col">
-                  <input
-                    class="form-control"
-                    id="emailAddress"
-                    type="email"
-                    placeholder="Enter email address..."
-                    aria-label="Enter email address..."
-                    data-sb-validations="required,email"
-                  />
-                </div>
-                <div class="col-auto">
-                  <button
-                    class="btn btn-primary disabled"
-                    id="submitButton"
-                    type="submit"
-                  >
-                    Notify Me!
-                  </button>
-                </div>
-              </div>
-              <div
-                class="invalid-feedback mt-2"
-                data-sb-feedback="emailAddress:required"
-              >
-                An email is required.
-              </div>
-              <div
-                class="invalid-feedback mt-2"
-                data-sb-feedback="emailAddress:email"
-              >
-                Email is not valid.
-              </div>
-              <!-- Submit success message-->
-              <!---->
-              <!-- This is what your users will see when the form-->
-              <!-- has successfully submitted-->
-              <div class="d-none" id="submitSuccessMessage">
-                <div class="text-center mb-3 mt-2 text-white">
-                  <div class="fw-bolder">Form submission successful!</div>
-                  To activate this form, sign up at
-                  <br />
-                  <a href=""></a>
-                </div>
-              </div>
-              <!-- Submit error message-->
-              <!---->
-              <!-- This is what your users will see when there is-->
-              <!-- an error submitting the form-->
-              <div class="d-none" id="submitErrorMessage">
-                <div class="text-center text-danger mb-3 mt-2">
-                  Error sending message!
-                </div>
-              </div>
-            </form>
-          </div>
+
+      <!-- Live Trading Engine -->
+      <div class="project-card">
+        <img src="assets/img/StockMarket.jpg" alt="Live Trading Engine" class="project-image">
+        <div class="project-overlay"></div>
+        <div class="project-content">
+          <span class="project-tag">Stage 3 — Deploy</span>
+          <h3 class="project-title">Live Trading Engine</h3>
+          <p class="project-desc">
+            Dockerized, cron-driven engine. Scores markets daily (0–100), sits out when conditions are poor,
+            dispatches paper-trading signals, manages exits, retrains models on schedule.
+          </p>
+          <span class="project-link">
+            Production Engineering · Orchestration
+          </span>
         </div>
       </div>
-    </section>
-    <!-- Contact-->
-    <section class="contact-section bg-black">
-      <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5">
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">LinkedIn</h4>
-                <hr class="my-4 mx-auto" />
-                <div class="small text-black-50">
-                  <a href="https://www.linkedin.com/in/tolgauyanik/">
-                    Tolga Uyanık</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-envelope text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Email</h4>
-                <hr class="my-4 mx-auto" />
-                <div class="small text-black-50">
-                  <a href="">uyaniktolga123@gmail.com</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Create a Meeting</h4>
-                <hr class="my-4 mx-auto" />
-                <div class="small text-black-50">
-                  <a href="https://calendar.app.google/X9whTTFDRjfCcjWB8">
-                    Google Calendar</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
+
+      <!-- Analytics Dashboards -->
+      <a class="project-card">
+        <img src="assets/img/Monitoring.jpg" alt="Analytics Dashboards" class="project-image">
+        <div class="project-overlay"></div>
+        <div class="project-content">
+          <span class="project-tag">Stage 4 — Monitor</span>
+          <h3 class="project-title">Analytics Dashboards</h3>
+          <p class="project-desc">
+            Grafana dashboards turning engine output into daily and hourly buy/sell recommendations across BIST and US markets.
+          </p>
+          <span class="project-link">
+            View Live Dashboard
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
         </div>
-        <!-- <div class="social d-flex justify-content-center">
-                    <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
-                </div> -->
+      </a>
+
+      <!-- Quality Lab -->
+      <div class="project-card">
+        <img src="assets/img/PaperTrading.jpg" alt="Quality Lab" class="project-image">
+        <div class="project-overlay"></div>
+        <div class="project-content">
+          <span class="project-tag">Stage 5 — Verify</span>
+          <h3 class="project-title">Paper-Trading Quality Lab</h3>
+          <p class="project-desc">
+            Forward-testing dashboards grading live strategy quality in real time. The scientific safeguard that
+            catches and retires strategies with inflated in-sample results.
+          </p>
+          <span class="project-link">
+            Scientific Skepticism · Forward-Testing
+          </span>
+        </div>
       </div>
-    </section>
-    <!-- Footer-->
-    <footer class="footer bg-black small text-center text-white-50">
-      <div class="container px-4 px-lg-5">
-        Copyright &copy; Your Website 2023
+
+      <!-- Blog Posts -->
+      <a href="blogs-v2.html" class="project-card">
+        <img src="assets/img/Books.jpg" alt="Blog Posts" class="project-image">
+        <div class="project-overlay"></div>
+        <div class="project-content">
+          <span class="project-tag">Research & Writing</span>
+          <h3 class="project-title">Blog Posts</h3>
+          <p class="project-desc">
+            Deep dives into philosophy, business strategy, psychology, and leadership. Distilled insights from books and thinkers.
+          </p>
+          <span class="project-link">
+            Explore Articles
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="about-grid">
+      <div class="about-left">
+        <p class="about-label">About</p>
+        <div class="about-photo-wrapper">
+          <img src="assets/img/ProfileJuly.jpg" alt="Tolga Uyanik" class="about-photo">
+        </div>
       </div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-  </body>
+      <div>
+        <p class="about-content">
+          <strong>Analyst at Canaria</strong>, a Job Market Intelligence platform. On any given day I might be
+          running competitor analysis on a dataset, shaping a new feature for one of our marketplace datasets,
+          building marketing automation on behavioral signals, screening candidates, or fixing a scraper that just broke.
+          The thread across all of it is <strong>product judgment</strong>: small decisions about messy data that compound into a better product.
+        </p>
+        <p class="about-content" style="margin-top: var(--space-md);">
+          Outside work, I run my own <strong>three-stage quantitative research pipeline</strong>. A real-time monitor
+          tracks BIST equities and computes 70+ indicators. A backtesting engine simulates trades under realistic
+          transaction costs. A strategy miner uses XGBoost and Random Forest to surface patterns I'd never spot by hand.
+          Top strategies hit <strong>72–74% win rates</strong> and Profit Factors up to 9.5 in backtesting.
+        </p>
+        <p class="about-content" style="margin-top: var(--space-md); color: var(--fg-muted); font-style: italic;">
+          You can find raw data anywhere. But if you want it clean, enriched, and structured for a specific use case,
+          you need someone who lives in that problem. With financial data, that's me.
+        </p>
+      </div>
+    </div>
+    <div class="about-stats">
+      <div class="stat">
+        <p class="stat-value">70+</p>
+        <p class="stat-label">Indicators</p>
+      </div>
+      <div class="stat">
+        <p class="stat-value">72-74%</p>
+        <p class="stat-label">Win Rate</p>
+      </div>
+      <div class="stat">
+        <p class="stat-value">9.5×</p>
+        <p class="stat-label">Profit Factor</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <header class="contact-header">
+      <h2 class="contact-title">Let's Connect</h2>
+      <p class="contact-subtitle">Open to opportunities in analytics, fintech, and trading systems</p>
+    </header>
+
+    <div class="contact-grid">
+      <a href="https://www.linkedin.com/in/tolgauyanik/" class="contact-card" target="_blank" rel="noopener">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+        <p class="contact-card-title">LinkedIn</p>
+        <p class="contact-card-value">Tolga Uyanık</p>
+      </a>
+
+      <a href="mailto:uyaniktolga123@gmail.com" class="contact-card">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        <p class="contact-card-title">Email</p>
+        <p class="contact-card-value">uyaniktolga123@gmail.com</p>
+      </a>
+
+      <a href="https://calendar.app.google/X9whTTFDRjfCcjWB8" class="contact-card" target="_blank" rel="noopener">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <p class="contact-card-title">Schedule Meeting</p>
+        <p class="contact-card-value">Google Calendar</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-name">Tolga Uyanik</span>
+      <span class="footer-dot">·</span>
+      <a href="https://github.com/TolgaUyanik" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+      <span class="footer-dot">·</span>
+      <a href="https://www.linkedin.com/in/tolgauyanik/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      <span class="footer-dot">·</span>
+      <a href="blogs-v2.html" class="footer-link">Blog</a>
+    </div>
+    <p class="footer-tagline">Building systems that find alpha.</p>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-in').forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  </script>
+</body>
 </html>
